@@ -1,7 +1,7 @@
 import * as Styled from './styles';
 
 import ThemeToggler from './ThemeToggler';
-import HamburgerMenu from './HamburgerMenu';
+import Hamburger from './Hamburger';
 
 import { GriddyContext } from 'components/layout/Layout';
 
@@ -13,21 +13,22 @@ export default function NavBar() {
   const { width } = useContext(GriddyContext);
   const router = useRouter();
 
-  const navLinks = [
+  const links = [
     { text: 'Learn', href: '/learn' },
     { text: 'Quiz', href: '/quiz' },
     { text: 'About', href: '/about' },
   ];
 
-  const renderNavLinks = () =>
-    navLinks.map(({ text, href }) => (
-      <li key={`nav-link-${text}`}>
-        <Styled.NavLink
+  const renderLinks = (position) =>
+    links.map(({ text, href }) => (
+      <li key={`${position === 'nav' ? 'nav' : 'ham'}-link-${text}`}>
+        <Styled.Links
           href={href}
           className={router.pathname === href && 'active'}
+          position={position}
         >
           {text}
-        </Styled.NavLink>
+        </Styled.Links>
       </li>
     ));
 
@@ -36,13 +37,14 @@ export default function NavBar() {
       <Link href="/">
         <Styled.Header>Griddy</Styled.Header>
       </Link>
+
       {width <= 768 ? (
-        <HamburgerMenu />
+        <Hamburger renderLinks={renderLinks} />
       ) : (
-        <Styled.LinkContainer>
-          {renderNavLinks()}
+        <Styled.NavList>
+          {renderLinks('nav')}
           <ThemeToggler />
-        </Styled.LinkContainer>
+        </Styled.NavList>
       )}
     </Styled.Navbar>
   );

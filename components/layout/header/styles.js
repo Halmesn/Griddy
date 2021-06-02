@@ -22,7 +22,7 @@ export const Header = styled(motion.h1)`
   cursor: pointer;
 `;
 
-export const LinkContainer = styled.ul`
+export const NavList = styled.ul`
   ${flexBetween}
   list-style: none;
 `;
@@ -33,18 +33,44 @@ const NextLink = ({ children, className, href }) => (
   </Link>
 );
 
-export const NavLink = styled(NextLink)`
-  color: ${({ theme }) => theme.colors.inactive};
-  font-size: 2.4rem;
-  margin: 0.8rem 0.8rem;
-  font-family: ${({ theme }) => theme.fonts.primary};
-  font-weight: normal;
-  transition: 150ms;
+export const Links = styled(NextLink)`
+  user-select: none;
 
-  :hover,
-  &.active {
-    color: ${({ theme }) => theme.colors.primary};
-  }
+  ${({ position }) =>
+    position === 'nav'
+      ? css`
+          color: ${({ theme }) => theme.colors.inactive};
+          font-size: 2.4rem;
+          margin: 0.8rem 0.8rem;
+          font-family: ${({ theme }) => theme.fonts.primary};
+          font-weight: normal;
+          transition: 0.15s;
+
+          :hover,
+          &.active {
+            color: ${({ theme }) => theme.colors.primary};
+          }
+        `
+      : css`
+          ${flexBetween}
+          font-size: 2rem;
+          background: ${({ theme }) => theme.colors.lowContrastBackground};
+          color: ${({ theme }) => theme.colors.primary};
+          font-family: ${({ theme }) => theme.fonts.primary};
+          padding: 1.2rem 0.48rem 1.2rem 1.2rem;
+          width: 100%;
+          text-align: ${({ textAlign }) => textAlign || 'left'};
+          border-radius: 0.8rem;
+          transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+          white-space: nowrap;
+
+          :hover {
+            background: ${({ theme }) => theme.colors.highlighted};
+          }
+          &.active {
+            background: ${({ theme }) => theme.colors.selected};
+          }
+        `}
 `;
 
 export const Hamburger = styled.div`
@@ -85,8 +111,8 @@ export const HamBar = styled.div`
     left: 0;
   }
 
-  ${({ isOpen }) =>
-    isOpen &&
+  ${({ showHamMenu }) =>
+    showHamMenu &&
     css`
       & {
         background-color: transparent;
@@ -102,6 +128,27 @@ export const HamBar = styled.div`
     `}
 `;
 
+export const HamMenu = styled(motion.div)`
+  width: 19.2rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: ${({ theme }) => theme.colors.lowContrastBackground};
+  box-shadow: ${({ theme }) => theme.misc.shadow};
+  border-bottom-left-radius: 0.8rem;
+  padding: 0 0.8rem;
+  z-index: 1;
+`;
+
+export const HamList = styled(motion.ul)`
+  list-style: none;
+  margin: ${({ margin }) => margin};
+
+  li {
+    margin-top: 2.4rem;
+  }
+`;
+
 export const StyledThemeToggler = styled(motion.button)`
   background: transparent;
   border: 0;
@@ -111,6 +158,17 @@ export const StyledThemeToggler = styled(motion.button)`
   cursor: pointer;
   margin: ${({ margin }) => margin || '0 1rem'};
 `;
+
+export const HamMenuVariants = {
+  hidden: { opacity: 0, x: 192 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      ease: [0.6, 0.05, 0.28, 0.91],
+    },
+  },
+};
 
 export const MoonIcon = ({ height, width, fill }) => (
   <svg

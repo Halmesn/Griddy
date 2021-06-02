@@ -9,7 +9,10 @@ export default function ThemeToggler() {
 
   return (
     <StyledThemeToggler
-      onClick={themeToggler}
+      onClick={(e) => {
+        e.stopPropagation();
+        themeToggler();
+      }}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.95 }}
     >
