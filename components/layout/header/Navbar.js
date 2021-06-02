@@ -1,6 +1,7 @@
 import * as Styled from './styles';
 
 import ThemeToggler from './ThemeToggler';
+import HamburgerMenu from './HamburgerMenu';
 
 import { GriddyContext } from 'components/layout/Layout';
 
@@ -35,10 +36,14 @@ export default function NavBar() {
       <Link href="/">
         <Styled.Header>Griddy</Styled.Header>
       </Link>
-      <Styled.LinkContainer>
-        {renderNavLinks()}
-        <ThemeToggler />
-      </Styled.LinkContainer>
+      {width <= 768 ? (
+        <HamburgerMenu />
+      ) : (
+        <Styled.LinkContainer>
+          {renderNavLinks()}
+          <ThemeToggler />
+        </Styled.LinkContainer>
+      )}
     </Styled.Navbar>
   );
 }

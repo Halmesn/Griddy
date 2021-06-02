@@ -32,9 +32,9 @@ export const positionCenter = css`
  *
  * @example
  * // Calls the `Header` function when style different headers
- * useKeyDown(27, hide)
+ * header('h1')
  *
- * @param {htmlFor} html tag for different use
+ * @param {htmlFor} html tag string for different use
  */
 
 export const header = (htmlFor) => css`

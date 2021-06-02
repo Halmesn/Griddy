@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import { flexBetween, header } from 'styles/Mixins';
 import Link from 'next/link';
@@ -34,22 +34,72 @@ const NextLink = ({ children, className, href }) => (
 );
 
 export const NavLink = styled(NextLink)`
-  color: ${({ theme }) => theme.colors.disabled};
+  color: ${({ theme }) => theme.colors.inactive};
   font-size: 2.4rem;
   margin: 0.8rem 0.8rem;
   font-family: ${({ theme }) => theme.fonts.primary};
   font-weight: normal;
   transition: 150ms;
 
-  :hover {
+  :hover,
+  &.active {
     color: ${({ theme }) => theme.colors.primary};
-    transition: 150ms;
+  }
+`;
+
+export const Hamburger = styled.div`
+  position: absolute;
+  z-index: 2;
+  right: 1.6rem;
+  top: 2rem;
+  cursor: pointer;
+  height: 2.2rem;
+`;
+
+export const HamBar = styled.div`
+  position: relative;
+
+  &,
+  ::after,
+  ::before {
+    background-color: ${({ theme }) => theme.colors.primary};
+    width: 2.4rem;
+    height: 2px;
+    display: inline-block;
+    transition: 0.2s ease-in-out;
   }
 
-  &.active {
-    transition: 300ms;
-    color: ${({ theme }) => theme.colors.primary};
+  ::after,
+  ::before {
+    content: '';
+    position: absolute;
   }
+
+  ::before {
+    top: -0.8rem;
+    left: 0;
+  }
+
+  ::after {
+    top: 0.8rem;
+    left: 0;
+  }
+
+  ${({ isOpen }) =>
+    isOpen &&
+    css`
+      & {
+        background-color: transparent;
+      }
+      ::before {
+        top: 0;
+        transform: rotate(135deg);
+      }
+      ::after {
+        top: 0;
+        transform: rotate(-135deg);
+      }
+    `}
 `;
 
 export const StyledThemeToggler = styled(motion.button)`
