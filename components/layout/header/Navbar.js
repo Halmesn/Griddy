@@ -10,7 +10,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function NavBar() {
-  const { width } = useContext(GriddyContext);
+  const { windowWidth } = useContext(GriddyContext);
   const router = useRouter();
 
   const links = [
@@ -38,7 +38,7 @@ export default function NavBar() {
         <Styled.Header>Griddy</Styled.Header>
       </Link>
 
-      {width <= 768 ? (
+      {windowWidth <= 768 ? (
         <Hamburger renderLinks={renderLinks} />
       ) : (
         <Styled.NavList>

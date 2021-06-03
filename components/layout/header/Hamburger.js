@@ -8,7 +8,7 @@ import { useContext, useState, useEffect, useRef } from 'react';
 import { AnimatePresence, useAnimation } from 'framer-motion';
 
 export default function Hamburger({ renderLinks }) {
-  const { width } = useContext(GriddyContext);
+  const { windowWidth } = useContext(GriddyContext);
 
   const controls = useAnimation();
   const hamMenuRef = useRef();
@@ -20,7 +20,7 @@ export default function Hamburger({ renderLinks }) {
     [showHamMenu]
   );
 
-  useEffect(() => width > 768 && setShowHamMenu(false), [width]);
+  useEffect(() => windowWidth > 768 && setShowHamMenu(false), [windowWidth]);
 
   useEffect(() => {
     const onOutsideClick = (e) => {
@@ -45,8 +45,14 @@ export default function Hamburger({ renderLinks }) {
           <Styled.HamMenu
             animate={controls}
             initial="hidden"
-            exit={{ opacity: 0, x: 192 }}
+            exit="hidden"
             variants={Styled.HamMenuVariants}
+            transition={{
+              type: 'spring',
+              duration: 0.1,
+              stiffness: 40,
+              delay: 0.1,
+            }}
             ref={hamMenuRef}
           >
             <Styled.HamList margin="2.4rem 0 1.6rem">

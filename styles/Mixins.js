@@ -27,14 +27,9 @@ export const positionCenter = css`
 /**
  * Return different header styles.
  *
- * @module
- * @function Header
- *
- * @example
- * // Calls the `Header` function when style different headers
- * header('h1')
- *
- * @param {htmlFor} html tag string for different use
+ * @param {String} htmlFor - html tag string for different use
+ * @returns {String} css style string
+ * @example header('h1')
  */
 
 export const header = (htmlFor) => css`

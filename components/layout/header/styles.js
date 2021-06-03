@@ -164,9 +164,6 @@ export const HamMenuVariants = {
   visible: {
     opacity: 1,
     x: 0,
-    transition: {
-      ease: [0.6, 0.05, 0.28, 0.91],
-    },
   },
 };
 
