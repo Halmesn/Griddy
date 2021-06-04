@@ -10,7 +10,7 @@ export default function AboutContent() {
       <Styled.Header>About</Styled.Header>
       <Styled.Description fontSize="1.85rem">
         Griddy is a single page web application to help people learn CSS grid in
-        an interactive fashion.
+        an easy and interactive way.
       </Styled.Description>
       <Styled.Description fontSize="1.85rem">
         It was built with Next.js, Styled Components, and Framer Motion.

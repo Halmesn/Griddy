@@ -11,7 +11,7 @@ export const Navbar = styled(motion.nav)`
   background: transparent;
   ${flexBetween}
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 48em) {
     width: auto;
     margin: 0 1.2rem;
   }

@@ -8,11 +8,11 @@ export const AboutContent = styled(motion.section)`
   max-width: 80%;
   margin: 0 auto;
 
-  @media only screen and (max-width: 980px) {
+  @media only screen and (max-width: 61.25em) {
     text-align: center;
   }
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 31.25em) {
     padding: 4rem 1.6rem;
     transition: padding 0.15s ease-in-out;
   }
@@ -35,7 +35,7 @@ export const LinkList = styled.ul`
   flex-direction: column;
   align-items: flex-start;
 
-  @media screen and (max-width: 980px) {
+  @media screen and (max-width: 61.25em) {
     align-items: center;
   }
 `;
