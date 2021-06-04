@@ -25,10 +25,16 @@ export const HomeContent = styled(motion.section)`
   }
 `;
 
-export const GridItem = styled(motion.div)`
+export const TextContainer = styled(motion.div)`
   @media only screen and (max-width: 61.25em) {
     justify-self: center;
   }
+`;
+
+export const FlexContainer = styled(motion.div)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const Header = styled(motion.h2)`

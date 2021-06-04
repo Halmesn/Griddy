@@ -32,7 +32,7 @@ export const lightTheme = {
   colors: {
     primary: '#FFFFFFE6',
     background: '#5DA449',
-    buttonPrimary: '#eaeaea',
+    buttonPrimary: '#DA931E',
     inactive: '#FFFFFF99',
     lowContrastBackground: '#f1f1f1',
     highlighted: '#d9d6d6',
