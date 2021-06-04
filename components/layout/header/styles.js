@@ -167,6 +167,11 @@ export const HamMenuVariants = {
   },
 };
 
+export const HamMenuTransitions = {
+  type: 'spring',
+  stiffness: 40,
+};
+
 export const MoonIcon = ({ height, width, fill }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

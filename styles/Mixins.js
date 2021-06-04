@@ -31,13 +31,12 @@ export const positionCenter = css`
  * @returns {String} css style string
  * @example header('h1')
  */
-
 export const header = (htmlFor) => css`
   color: ${({ color, theme }) => color || theme.colors.primary};
   margin: ${({ margin }) => margin || '0.8rem 0.8rem'};
   font-weight: ${({ fontWeight }) => fontWeight || '600'};
   max-width: ${({ maxWidth }) => maxWidth};
-  transition: color 150ms ease-in-out;
+  transition: color 0.15s ease-in-out;
   text-align: ${({ textAlign }) => textAlign};
   padding: ${({ padding }) => padding};
   display: ${({ display }) => display || 'block'};
@@ -58,4 +57,15 @@ export const header = (htmlFor) => css`
   css`
     font-size: 2em;
   `};
+`;
+
+export const description = css`
+  color: ${({ theme }) => theme.colors.primary};
+  margin: ${({ margin }) => margin || '0.8rem 0.8rem'};
+  transition: color 0.15s ease-in-out;
+  display: ${({ display }) => display || 'block'};
+  max-width: ${({ maxWidth }) => maxWidth};
+  font-size: ${({ fontSize }) => fontSize || '1.6rem'};
+  text-align: ${({ textAlign }) => textAlign};
+  line-height: ${({ lineHeight }) => lineHeight || '2.75rem'};
 `;

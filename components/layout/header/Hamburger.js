@@ -11,6 +11,7 @@ export default function Hamburger({ renderLinks }) {
   const { windowWidth } = useContext(GriddyContext);
 
   const controls = useAnimation();
+
   const hamMenuRef = useRef();
 
   const [showHamMenu, setShowHamMenu] = useState(false);
@@ -23,11 +24,9 @@ export default function Hamburger({ renderLinks }) {
   useEffect(() => windowWidth > 768 && setShowHamMenu(false), [windowWidth]);
 
   useEffect(() => {
-    const onOutsideClick = (e) => {
-      e.stopPropagation();
+    const onOutsideClick = (e) =>
       (hamMenuRef.current && hamMenuRef.current.contains(e.target)) ||
-        setShowHamMenu(false);
-    };
+      setShowHamMenu(false);
 
     showHamMenu && document.addEventListener('click', onOutsideClick);
 
@@ -47,12 +46,7 @@ export default function Hamburger({ renderLinks }) {
             initial="hidden"
             exit="hidden"
             variants={Styled.HamMenuVariants}
-            transition={{
-              type: 'spring',
-              duration: 0.1,
-              stiffness: 40,
-              delay: 0.1,
-            }}
+            transition={Styled.HamMenuTransitions}
             ref={hamMenuRef}
           >
             <Styled.HamList margin="2.4rem 0 1.6rem">
