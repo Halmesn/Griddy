@@ -13,13 +13,15 @@ function MyApp({ Component, pageProps }) {
           href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/microsoft/209/four-leaf-clover_1f340.png"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Lexend:wght@500;600&family=Nunito+Sans&display=swap"
-          rel="stylesheet"
-        />
-        <link
           href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
           rel="stylesheet"
         />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Autour+One&family=PT+Sans&family=Source+Code+Pro:wght@400;900&display=swap"
+          rel="stylesheet"
+        />
+
         <title>
           Griddy - Learn about css grid in a quick, easy, and Griddy way!
         </title>

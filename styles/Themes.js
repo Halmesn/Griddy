@@ -1,8 +1,8 @@
 export const darkTheme = {
   fonts: {
-    primary: '"Lexend", "Roboto", "Helvetica", "Arial"',
-    secondary: '"Nunito Sans", "Roboto", "Helvetica", "Arial"',
-    code: '"Fira Code", "Menlo", "Courier", "Times New Roman"',
+    primary: '"Autour One", cursive',
+    secondary: '"PT Sans", sans-serif',
+    code: '"Source Code Pro", monospace',
   },
   colors: {
     primary: '#ffffff',
@@ -25,15 +25,15 @@ export const darkTheme = {
 
 export const lightTheme = {
   fonts: {
-    primary: '"Lexend", "Roboto", "Helvetica", "Arial"',
-    secondary: '"Nunito Sans", "Roboto", "Helvetica", "Arial"',
-    code: '"Fira Code", "Menlo", "Courier", "Times New Roman"',
+    primary: '"Autour One", cursive',
+    secondary: '"PT Sans", sans-serif',
+    code: '"Source Code Pro", monospace',
   },
   colors: {
-    primary: '#282828',
-    background: '#ffffff',
+    primary: '#FFFFFFE6',
+    background: '#5DA449',
     buttonPrimary: '#eaeaea',
-    inactive: '#828282',
+    inactive: '#FFFFFF99',
     lowContrastBackground: '#f1f1f1',
     highlighted: '#d9d6d6',
     selected: '#e6e3e3',
@@ -41,7 +41,7 @@ export const lightTheme = {
     success: '#d4edda',
     successText: '#659671',
     error: '#f8d7da',
-    link: '#1577b3',
+    link: '#FFFFFFB3',
   },
   misc: {
     shadow: '.6rem .6rem 5.4rem -2rem rgba(0, 0, 0, 0.55)',
