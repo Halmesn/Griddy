@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { header, description } from 'styles/Mixins';
+import { header, description, flexColumn } from 'styles/Mixins';
 
 export const HomeContent = styled(motion.section)`
   padding: 4rem 0;
@@ -27,14 +27,12 @@ export const HomeContent = styled(motion.section)`
 
 export const TextContainer = styled(motion.div)`
   @media only screen and (max-width: 61.25em) {
-    justify-self: center;
+    ${flexColumn}
   }
 `;
 
 export const FlexContainer = styled(motion.div)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  ${flexColumn}
 `;
 
 export const Header = styled(motion.h2)`

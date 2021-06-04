@@ -40,7 +40,7 @@ export const Links = styled(NextLink)`
     position === 'nav'
       ? css`
           color: ${({ theme }) => theme.colors.inactive};
-          font-size: 2.4rem;
+          font-size: 2rem;
           margin: 0.8rem 0.8rem;
           font-family: ${({ theme }) => theme.fonts.primary};
           font-weight: normal;
@@ -54,7 +54,6 @@ export const Links = styled(NextLink)`
       : css`
           ${flexBetween}
           font-size: 2rem;
-          background: ${({ theme }) => theme.colors.lowContrastBackground};
           color: ${({ theme }) => theme.colors.primary};
           font-family: ${({ theme }) => theme.fonts.primary};
           padding: 1.2rem 0.48rem 1.2rem 1.2rem;
@@ -135,6 +134,7 @@ export const HamMenu = styled(motion.div)`
   top: 0;
   background: ${({ theme }) => theme.colors.lowContrastBackground};
   box-shadow: ${({ theme }) => theme.misc.shadow};
+  border-top-left-radius: 0.8rem;
   border-bottom-left-radius: 0.8rem;
   padding: 0 0.8rem;
   z-index: 1;

@@ -12,6 +12,12 @@ export const flexBetween = css`
   align-items: center;
 `;
 
+export const flexColumn = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const gridCenter = css`
   display: grid;
   place-items: center;
@@ -33,11 +39,10 @@ export const positionCenter = css`
  */
 export const header = (htmlFor) => css`
   color: ${({ color, theme }) => color || theme.colors.primary};
-  margin: ${({ margin }) => margin || '0.8rem 0.8rem'};
+  margin: ${({ margin }) => margin || '0.8rem'};
   font-weight: ${({ fontWeight }) => fontWeight || '600'};
   max-width: ${({ maxWidth }) => maxWidth};
   transition: color 0.15s ease-in-out;
-  text-align: ${({ textAlign }) => textAlign};
   padding: ${({ padding }) => padding};
   display: ${({ display }) => display || 'block'};
   font-family: ${({ theme }) => theme.fonts.primary};
@@ -61,7 +66,7 @@ export const header = (htmlFor) => css`
 
 export const description = css`
   color: ${({ theme }) => theme.colors.primary};
-  margin: ${({ margin }) => margin || '0.8rem 0.8rem'};
+  margin: ${({ margin }) => margin || '0.8rem'};
   transition: color 0.15s ease-in-out;
   display: ${({ display }) => display || 'block'};
   max-width: ${({ maxWidth }) => maxWidth};
