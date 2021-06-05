@@ -35,7 +35,7 @@ export default function HomeContent() {
         <ButtonPrimary href="/quiz">I'm ready to go!</ButtonPrimary>
       </Styled.TextContainer>
       <Styled.FlexContainer>
-        <QuizForm index={0} sample />
+        <QuizForm quizIndex={0} sample />
       </Styled.FlexContainer>
     </Styled.HomeContent>
   );

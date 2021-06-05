@@ -78,7 +78,42 @@ export const Answer = styled(motion.div)`
   cursor: pointer;
 `;
 
+export const MessagePopUp = styled.div`
+  position: relative;
+`;
+
+export const MessageContainer = styled(motion.div)`
+  background: ${({ theme }) => theme.colors.buttonPrimary};
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1.6rem;
+  font-family: ${({ theme }) => theme.fonts.primary};
+  text-align: center;
+  border-radius: 0.6rem;
+  padding: 1.2rem;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 23%;
+
+  ::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -0.5rem;
+    border-width: 0.5rem;
+    border-style: solid;
+    border-color: ${({ theme }) => theme.colors.buttonPrimary} transparent
+      transparent transparent;
+  }
+`;
+
 export const DotVariants = {
   hidden: { scale: 0 },
   visible: { scale: 1 },
+};
+
+export const MessageVariants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: { scale: [0.8, 1.3, 1], opacity: 1 },
 };
