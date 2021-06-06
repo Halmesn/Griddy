@@ -6,7 +6,7 @@ import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 import { QUIZ } from 'content/quizContent';
 
 import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { useAnimation } from 'framer-motion';
 
 export default function QuizForm({ quizIndex, sample }) {
   const codeSnippets = QUIZ.codeSnippets[quizIndex];
@@ -16,6 +16,8 @@ export default function QuizForm({ quizIndex, sample }) {
 
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [solution, setSolution] = useState(null);
+
+  const controls = useAnimation();
 
   const renderCode = () => (
     <Styled.CodeContainer>
@@ -41,6 +43,11 @@ export default function QuizForm({ quizIndex, sample }) {
     </Styled.AnswerContainer>
   );
 
+  const onSolutionCheck = () => {
+    setSolution(selectedAnswer);
+    controls.start('visible');
+  };
+
   return (
     <Styled.QuizForm>
       <Styled.Header>
@@ -52,23 +59,24 @@ export default function QuizForm({ quizIndex, sample }) {
       </Styled.SubHeader>
       {answers && renderAnswer()}
       {sample ? (
-        <Styled.MessagePopUp>
-          <ButtonPrimary onClick={() => setSolution(selectedAnswer)}>
+        <Styled.PopUp>
+          <ButtonPrimary onClick={onSolutionCheck}>
             Check Solution
           </ButtonPrimary>
-          <AnimatePresence>
-            {solution === 3 && (
-              <Styled.MessageContainer
-                variants={Styled.MessageVariants}
-                initial="hidden"
-                animate="visible"
-                exit="hidden"
-              >
-                Spot on!
-              </Styled.MessageContainer>
+
+          <Styled.Message
+            variants={Styled.MessageVariants}
+            initial="hidden"
+            animate={controls}
+          >
+            {solution && (
+              <p>
+                Your answer to the sample question is{' '}
+                {solution === 3 ? 'correct' : 'not right'}.
+              </p>
             )}
-          </AnimatePresence>
-        </Styled.MessagePopUp>
+          </Styled.Message>
+        </Styled.PopUp>
       ) : (
         <ButtonPrimary>Submit</ButtonPrimary>
       )}

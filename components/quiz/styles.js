@@ -78,11 +78,11 @@ export const Answer = styled(motion.div)`
   cursor: pointer;
 `;
 
-export const MessagePopUp = styled.div`
+export const PopUp = styled.div`
   position: relative;
 `;
 
-export const MessageContainer = styled(motion.div)`
+export const Message = styled(motion.div)`
   background: ${({ theme }) => theme.colors.buttonPrimary};
   color: ${({ theme }) => theme.colors.primary};
   font-size: 1.6rem;
@@ -93,7 +93,7 @@ export const MessageContainer = styled(motion.div)`
   position: absolute;
   z-index: 1;
   bottom: 125%;
-  left: 23%;
+  cursor: pointer;
 
   ::after {
     content: '';
@@ -107,6 +107,8 @@ export const MessageContainer = styled(motion.div)`
       transparent transparent;
   }
 `;
+
+export const MessageTitle = styled(motion.div)``;
 
 export const DotVariants = {
   hidden: { scale: 0 },
