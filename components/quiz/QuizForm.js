@@ -74,6 +74,7 @@ export default function QuizForm({ quizIndex, sample }) {
             {solution === null ? (
               <Styled.MessageTitle fontSize="1.8rem">
                 Hey, at least give it a try before checking the solution.
+                <Styled.CloseIcon />
               </Styled.MessageTitle>
             ) : (
               <>
