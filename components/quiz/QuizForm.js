@@ -7,6 +7,7 @@ import { QUIZ } from 'content/quizContent';
 
 import { useState } from 'react';
 import { useAnimation } from 'framer-motion';
+import Link from 'next/link';
 
 export default function QuizForm({ quizIndex, sample }) {
   const codeSnippets = QUIZ.codeSnippets[quizIndex];
@@ -68,12 +69,47 @@ export default function QuizForm({ quizIndex, sample }) {
             variants={Styled.MessageVariants}
             initial="hidden"
             animate={controls}
+            onClick={() => controls.start('hidden')}
           >
-            {solution && (
-              <p>
-                Your answer to the sample question is{' '}
-                {solution === 3 ? 'correct' : 'not right'}.
-              </p>
+            {solution === null ? (
+              <Styled.MessageTitle fontSize="1.8rem">
+                Hey, at least give it a try before checking the solution.
+              </Styled.MessageTitle>
+            ) : (
+              <>
+                <Styled.MessageTitle fontSize="1.8rem">
+                  Your answer is{' '}
+                  {solution === 3 ? 'correct! Good Job!' : 'not right...'}
+                  <Styled.CloseIcon />
+                </Styled.MessageTitle>
+                {solution !== 3 && (
+                  <>
+                    <Styled.MessageTitle>
+                      You chose answer {solution + 1}:
+                    </Styled.MessageTitle>
+
+                    <Styled.MessageDescription>
+                      "{answers[solution]}"
+                    </Styled.MessageDescription>
+
+                    <Styled.MessageTitle>
+                      The correct answer is answer 4:
+                    </Styled.MessageTitle>
+
+                    <Styled.MessageDescription>
+                      "{answers[3]}"
+                    </Styled.MessageDescription>
+
+                    <Styled.MessageTitle>
+                      How about review our grid lessons?
+                    </Styled.MessageTitle>
+
+                    <Styled.MessageDescription margin="0 0 2rem 0">
+                      <Link href="/learn">Go to lessons</Link>
+                    </Styled.MessageDescription>
+                  </>
+                )}
+              </>
             )}
           </Styled.Message>
         </Styled.PopUp>
