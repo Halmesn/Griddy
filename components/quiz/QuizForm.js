@@ -44,6 +44,31 @@ export default function QuizForm({ quizIndex, sample }) {
     </Styled.AnswerContainer>
   );
 
+  const renderButton = () => {
+    switch (quizIndex) {
+      case 0:
+        return <ButtonPrimary href="/quiz/2">Next Question</ButtonPrimary>;
+      case 4:
+        return (
+          <Styled.FlexContainer>
+            <ButtonPrimary href="/quiz/4">Previous Question</ButtonPrimary>
+            <ButtonPrimary href="/quiz/results">Submit</ButtonPrimary>
+          </Styled.FlexContainer>
+        );
+      default:
+        return (
+          <Styled.FlexContainer>
+            <ButtonPrimary href={`/quiz/${quizIndex}`}>
+              Previous Question
+            </ButtonPrimary>
+            <ButtonPrimary href={`/quiz/${quizIndex + 2}`}>
+              Next Question
+            </ButtonPrimary>
+          </Styled.FlexContainer>
+        );
+    }
+  };
+
   const onSolutionCheck = () => {
     setSolution(selectedAnswer);
     controls.start('visible');
@@ -115,7 +140,7 @@ export default function QuizForm({ quizIndex, sample }) {
           </Styled.Message>
         </Styled.PopUp>
       ) : (
-        <ButtonPrimary>Submit</ButtonPrimary>
+        renderButton()
       )}
     </Styled.QuizForm>
   );

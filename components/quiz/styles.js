@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { header, flexColumn, flexCenter, flexBetween } from 'styles/Mixins';
+import { header, description, flexColumn, flexCenter } from 'styles/Mixins';
 
 export const QuizForm = styled(motion.div)`
   ${flexColumn}
@@ -136,6 +136,17 @@ export const MessageDescription = styled.p`
   a {
     text-decoration: underline;
   }
+`;
+
+export const QuizContainer = styled(motion.section)`
+  padding: 4rem 0;
+  max-width: 80%;
+  margin: 0 auto;
+  ${flexColumn}
+`;
+
+export const Description = styled.p`
+  ${description}
 `;
 
 export const DotVariants = {
