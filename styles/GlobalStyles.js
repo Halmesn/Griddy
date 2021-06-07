@@ -32,4 +32,8 @@ export const GlobalStyles = createGlobalStyle`
   select {
     font: inherit;
   }
+
+  ul {
+    list-style: none;
+  }
 `;

@@ -1,4 +1,10 @@
+import Sidebar from 'components/layout/sidebar/Sidebar';
+
+import { useState } from 'react';
+
 export default function QuizSidebar() {
+  const [showSidebar, setShowSidebar] = useState(false);
+
   const links = [
     { text: 'question1', href: '/quiz/1' },
     { text: 'question2', href: '/quiz/2' },
@@ -7,5 +13,13 @@ export default function QuizSidebar() {
     { text: 'question5', href: '/quiz/5' },
   ];
 
-  return <div></div>;
+  return (
+    <Sidebar
+      links={links}
+      showSidebar={showSidebar}
+      setShowSidebar={setShowSidebar}
+    >
+      Questions
+    </Sidebar>
+  );
 }
