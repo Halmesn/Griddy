@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export default function QuizForm({ quizIndex, sample }) {
   const codeSnippets = QUIZ.codeSnippets[quizIndex];
-  const hasCode = codeSnippets.some(({ indent }) => indent !== null);
+  const hasCode = codeSnippets[0].indent !== null;
 
   const { question, answers } = QUIZ.questions[quizIndex];
 

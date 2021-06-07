@@ -8,7 +8,7 @@ import { useRouter } from 'next/router';
 
 export default function QuizDetail() {
   const router = useRouter();
-  const quizIndex = +router.query.quizIndex;
+  const quizIndex = router.query.quizIndex;
 
   return (
     <>
