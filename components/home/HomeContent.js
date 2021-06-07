@@ -2,12 +2,13 @@ import * as Styled from './styles';
 
 import { GriddyContext } from 'components/layout/Layout';
 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 import QuizForm from 'components/quiz/QuizForm';
 
 export default function HomeContent() {
   const { windowWidth } = useContext(GriddyContext);
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   return (
     <Styled.HomeContent>
@@ -35,7 +36,12 @@ export default function HomeContent() {
         <ButtonPrimary href="/quiz">I'm ready to go!</ButtonPrimary>
       </Styled.TextContainer>
       <Styled.FlexContainer>
-        <QuizForm quizIndex={0} sample />
+        <QuizForm
+          quizIndex={0}
+          sample
+          selectedAnswer={selectedAnswer}
+          setSelectedAnswer={setSelectedAnswer}
+        />
       </Styled.FlexContainer>
     </Styled.HomeContent>
   );

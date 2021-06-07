@@ -9,13 +9,17 @@ import { useState } from 'react';
 import { useAnimation } from 'framer-motion';
 import Link from 'next/link';
 
-export default function QuizForm({ quizIndex, sample }) {
+export default function QuizForm({
+  quizIndex,
+  sample,
+  selectedAnswer,
+  setSelectedAnswer,
+}) {
   const codeSnippets = QUIZ.codeSnippets[quizIndex];
   const hasCode = codeSnippets[0].indent !== null;
 
   const { question, answers } = QUIZ.questions[quizIndex];
 
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [solution, setSolution] = useState(null);
 
   const controls = useAnimation();
