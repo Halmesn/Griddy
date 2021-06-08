@@ -32,6 +32,20 @@ export const Code = styled.code`
   font-family: ${({ theme }) => theme.fonts.code};
 `;
 
+export const CodeInput = styled.input`
+  border: 0;
+  padding: 0 0.6rem;
+  outline: none;
+  margin-bottom: 0.25rem;
+  background: ${({ theme }) => theme.colors.inputBackground};
+  color: ${({ theme }) => theme.colors.primary};
+  border-radius: 0.4rem;
+  transition: 0.15s;
+  font-family: ${({ theme }) => theme.fonts.code};
+  font-size: 1.2rem;
+  width: ${({ width }) => width || '12.8rem'};
+`;
+
 export const AnswerContainer = styled.div`
   margin: 0.55rem 0;
 `;

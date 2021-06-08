@@ -6,6 +6,7 @@ import QuizSidebar from 'components/quiz/QuizSidebar';
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import Results from 'components/quiz/Results';
 
 export default function QuizDetail() {
   const router = useRouter();
@@ -17,6 +18,61 @@ export default function QuizDetail() {
   const [quizFourAnswer, setQuizFourAnswer] = useState(null);
   const [quizFiveAnswer, setQuizFiveAnswer] = useState(null);
 
+  const results = [
+    quizOneAnswer,
+    quizTwoAnswer,
+    quizThreeAnswer,
+    quizFourAnswer,
+    quizFiveAnswer,
+  ];
+
+  const renderQuizForm = () => {
+    switch (quizIndex) {
+      case '1':
+        return (
+          <QuizForm
+            quizIndex={0}
+            selectedAnswer={quizOneAnswer}
+            setSelectedAnswer={setQuizOneAnswer}
+          />
+        );
+      case '2':
+        return (
+          <QuizForm
+            quizIndex={1}
+            selectedAnswer={quizTwoAnswer}
+            setSelectedAnswer={setQuizTwoAnswer}
+          />
+        );
+      case '3':
+        return (
+          <QuizForm
+            quizIndex={2}
+            selectedAnswer={quizThreeAnswer}
+            setSelectedAnswer={setQuizThreeAnswer}
+          />
+        );
+      case '4':
+        return (
+          <QuizForm
+            quizIndex={3}
+            selectedAnswer={quizFourAnswer}
+            setSelectedAnswer={setQuizFourAnswer}
+          />
+        );
+      case '5':
+        return (
+          <QuizForm
+            quizIndex={4}
+            selectedAnswer={quizFiveAnswer}
+            setSelectedAnswer={setQuizFiveAnswer}
+          />
+        );
+      case 'results':
+        return <Results results={results} />;
+    }
+  };
+
   return (
     <>
       <Styled.QuizContainer
@@ -24,41 +80,7 @@ export default function QuizDetail() {
         initial="hidden"
         animate="visible"
       >
-        {quizIndex === '1' && (
-          <QuizForm
-            quizIndex={0}
-            selectedAnswer={quizOneAnswer}
-            setSelectedAnswer={setQuizOneAnswer}
-          />
-        )}
-        {quizIndex === '2' && (
-          <QuizForm
-            quizIndex={1}
-            selectedAnswer={quizTwoAnswer}
-            setSelectedAnswer={setQuizTwoAnswer}
-          />
-        )}
-        {quizIndex === '3' && (
-          <QuizForm
-            quizIndex={2}
-            selectedAnswer={quizThreeAnswer}
-            setSelectedAnswer={setQuizThreeAnswer}
-          />
-        )}
-        {quizIndex === '4' && (
-          <QuizForm
-            quizIndex={3}
-            selectedAnswer={quizFourAnswer}
-            setSelectedAnswer={setQuizFourAnswer}
-          />
-        )}
-        {quizIndex === '5' && (
-          <QuizForm
-            quizIndex={4}
-            selectedAnswer={quizFiveAnswer}
-            setSelectedAnswer={setQuizFiveAnswer}
-          />
-        )}
+        {renderQuizForm()}
       </Styled.QuizContainer>
       <QuizSidebar />
     </>

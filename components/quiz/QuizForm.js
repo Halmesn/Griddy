@@ -88,6 +88,21 @@ export default function QuizForm({
         {question}
       </Styled.SubHeader>
       {answers && renderAnswer()}
+      {quizIndex === 1 && (
+        <Styled.CodeContainer margin="1.6rem 0">
+          <Styled.Code>grid-template-areas:</Styled.Code>
+          <Styled.Code textIndent="1.6rem">
+            "<Styled.CodeInput width="24rem" />"
+          </Styled.Code>
+          <Styled.Code textIndent="1.6rem">
+            "<Styled.CodeInput width="24rem" />"
+          </Styled.Code>
+          <Styled.Code textIndent="1.6rem">
+            "<Styled.CodeInput width="24rem" />"
+          </Styled.Code>
+          ;
+        </Styled.CodeContainer>
+      )}
       {sample ? (
         <Styled.PopUp>
           <ButtonPrimary onClick={onSolutionCheck}>
@@ -123,7 +138,7 @@ export default function QuizForm({
                     </Styled.MessageDescription>
 
                     <Styled.MessageTitle>
-                      The correct answer is answer 4:
+                      The correct answer is:
                     </Styled.MessageTitle>
 
                     <Styled.MessageDescription>

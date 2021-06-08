@@ -37,7 +37,7 @@ export const lightTheme = {
     lowContrastBackground: '#417433',
     highlighted: '#4f8c3e',
     selected: '#e6e3e3',
-    inputBackground: '#ddd',
+    inputBackground: '#659671',
     success: '#d4edda',
     successText: '#659671',
     error: '#f8d7da',
