@@ -2,12 +2,12 @@ import * as Styled from './styles';
 
 import Answer from './Answer';
 import ButtonPrimary from 'components/layout/button/ButtonPrimary';
+import PopUpMessage from './PopupMessage';
 
 import { QUIZ } from 'content/quizContent';
 
 import { useState } from 'react';
 import { useAnimation } from 'framer-motion';
-import Link from 'next/link';
 
 export default function QuizForm({
   quizIndex,
@@ -16,7 +16,7 @@ export default function QuizForm({
   setSelectedAnswer,
 }) {
   const codeSnippets = QUIZ.codeSnippets[quizIndex];
-  const hasCode = codeSnippets[0].indent !== null;
+  const hasCode = codeSnippets.some(({ noCodeSnippets }) => !noCodeSnippets);
 
   const { question, answers } = QUIZ.questions[quizIndex];
 
@@ -73,15 +73,51 @@ export default function QuizForm({
     }
   };
 
+  const renderInputArea = () => {
+    const onInputChange = (e, position) => {
+      const answerObjectCopy = { ...selectedAnswer };
+      answerObjectCopy[position] = e.target.value;
+      setSelectedAnswer(answerObjectCopy);
+    };
+
+    return (
+      <Styled.CodeContainer margin="1.6rem 0">
+        <Styled.Code>grid-template-areas:</Styled.Code>
+        <Styled.Code textIndent="1.6rem">
+          "
+          <Styled.CodeInput
+            width="24rem"
+            onChange={(e) => onInputChange(e, 'line1')}
+            value={selectedAnswer['line1'] ?? ''}
+          />
+          "
+        </Styled.Code>
+        <Styled.Code textIndent="1.6rem">
+          "
+          <Styled.CodeInput
+            width="24rem"
+            onChange={(e) => onInputChange(e, 'line2')}
+            value={selectedAnswer['line2'] ?? ''}
+          />
+          "
+        </Styled.Code>
+        <Styled.Code textIndent="1.6rem">
+          "
+          <Styled.CodeInput
+            width="24rem"
+            onChange={(e) => onInputChange(e, 'line3')}
+            value={selectedAnswer['line3'] ?? ''}
+          />
+          "
+        </Styled.Code>
+        ;
+      </Styled.CodeContainer>
+    );
+  };
+
   const onSolutionCheck = () => {
     setSolution(selectedAnswer);
     controls.start('visible');
-  };
-
-  const onInputChange = (e, position) => {
-    const answerObjectCopy = { ...selectedAnswer };
-    answerObjectCopy[position] = e.target.value;
-    setSelectedAnswer(answerObjectCopy);
   };
 
   return (
@@ -89,98 +125,27 @@ export default function QuizForm({
       <Styled.Header>
         {sample ? 'Sample Question' : `Question ${quizIndex + 1}`}
       </Styled.Header>
+
       {hasCode && renderCode()}
+
       <Styled.SubHeader maxWidth="72rem" margin="2.4rem 0 0.8rem">
         {question}
       </Styled.SubHeader>
+
       {answers && renderAnswer()}
-      {quizIndex === 1 && (
-        <Styled.CodeContainer margin="1.6rem 0">
-          <Styled.Code>grid-template-areas:</Styled.Code>
-          <Styled.Code textIndent="1.6rem">
-            "
-            <Styled.CodeInput
-              width="24rem"
-              onChange={(e) => onInputChange(e, 'line1')}
-              value={selectedAnswer['line1'] ?? ''}
-            />
-            "
-          </Styled.Code>
-          <Styled.Code textIndent="1.6rem">
-            "
-            <Styled.CodeInput
-              width="24rem"
-              onChange={(e) => onInputChange(e, 'line2')}
-              value={selectedAnswer['line2'] ?? ''}
-            />
-            "
-          </Styled.Code>
-          <Styled.Code textIndent="1.6rem">
-            "
-            <Styled.CodeInput
-              width="24rem"
-              onChange={(e) => onInputChange(e, 'line3')}
-              value={selectedAnswer['line3'] ?? ''}
-            />
-            "
-          </Styled.Code>
-          ;
-        </Styled.CodeContainer>
-      )}
+
+      {quizIndex === 1 && renderInputArea()}
+
       {sample ? (
         <Styled.PopUp>
           <ButtonPrimary onClick={onSolutionCheck}>
             Check Solution
           </ButtonPrimary>
-
-          <Styled.Message
-            variants={Styled.MessageVariants}
-            initial="hidden"
-            animate={controls}
-            onClick={() => controls.start('hidden')}
-          >
-            {solution === null ? (
-              <Styled.MessageTitle fontSize="1.8rem">
-                Hey, at least give it a try before checking the solution.
-                <Styled.CloseIcon />
-              </Styled.MessageTitle>
-            ) : (
-              <>
-                <Styled.MessageTitle fontSize="1.8rem">
-                  Your answer is{' '}
-                  {solution === 3 ? 'correct! Good Job!' : 'not right...'}
-                  <Styled.CloseIcon />
-                </Styled.MessageTitle>
-                {solution !== 3 && (
-                  <>
-                    <Styled.MessageTitle>
-                      You chose answer {solution + 1}:
-                    </Styled.MessageTitle>
-
-                    <Styled.MessageDescription>
-                      "{answers[solution]}"
-                    </Styled.MessageDescription>
-
-                    <Styled.MessageTitle>
-                      The correct answer is:
-                    </Styled.MessageTitle>
-
-                    <Styled.MessageDescription>
-                      "{answers[3]}"
-                    </Styled.MessageDescription>
-
-                    <Styled.MessageTitle>
-                      How about review our grid lessons?
-                    </Styled.MessageTitle>
-
-                    <Styled.MessageDescription margin="0 0 2rem 0">
-                      <Link href="/learn">Go to lessons</Link>
-                    </Styled.MessageDescription>
-                  </>
-                )}
-              </>
-            )}
-          </Styled.Message>
+          <PopUpMessage
+            solution={solution}
+            controls={controls}
+            answers={answers}
+          />
         </Styled.PopUp>
       ) : (
         renderButton()

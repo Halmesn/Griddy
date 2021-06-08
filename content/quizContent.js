@@ -48,14 +48,14 @@ export const QUIZ = {
       { indent: '0', text: 'grid-template-columns: 200px 120px 250px;' },
       { indent: '0', text: 'grid-template-rows: 400px 300px;' },
     ],
-    [{ indent: null }, { text: null }],
+    [{ noCodeSnippets: true }],
     [
       { indent: '0', text: '.grid-item' },
       { indent: '1rem', text: 'justify-self: right;' },
       { indent: '1rem', text: 'align-self: end;' },
       { indent: '0', text: '}' },
     ],
-    [{ indent: null }, { text: null }],
+    [{ noCodeSnippets: true }],
     [{ indent: '0', text: 'grid-gap: 5px' }],
   ],
 };
