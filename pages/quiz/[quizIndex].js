@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 export default function QuizDetail() {
   const router = useRouter();
-  const quizIndex = router.query.quizIndex;
+  const quizIndex = parseFloat(router.query.quizIndex);
 
   const [quizOneAnswer, setQuizOneAnswer] = useState(null);
   const [quizTwoAnswer, setQuizTwoAnswer] = useState({});
@@ -26,47 +26,25 @@ export default function QuizDetail() {
     quizFiveAnswer,
   ];
 
+  const setAnswers = [
+    setQuizOneAnswer,
+    setQuizTwoAnswer,
+    setQuizThreeAnswer,
+    setQuizFourAnswer,
+    setQuizFiveAnswer,
+  ];
+
   const renderQuizForm = () => {
     switch (quizIndex) {
-      case '1':
+      default:
         return (
-          <QuizForm
-            quizIndex={1}
-            selectedAnswer={quizOneAnswer}
-            setSelectedAnswer={setQuizOneAnswer}
-          />
-        );
-      case '2':
-        return (
-          <QuizForm
-            quizIndex={2}
-            selectedAnswer={quizTwoAnswer}
-            setSelectedAnswer={setQuizTwoAnswer}
-          />
-        );
-      case '3':
-        return (
-          <QuizForm
-            quizIndex={3}
-            selectedAnswer={quizThreeAnswer}
-            setSelectedAnswer={setQuizThreeAnswer}
-          />
-        );
-      case '4':
-        return (
-          <QuizForm
-            quizIndex={4}
-            selectedAnswer={quizFourAnswer}
-            setSelectedAnswer={setQuizFourAnswer}
-          />
-        );
-      case '5':
-        return (
-          <QuizForm
-            quizIndex={5}
-            selectedAnswer={quizFiveAnswer}
-            setSelectedAnswer={setQuizFiveAnswer}
-          />
+          quizIndex && (
+            <QuizForm
+              quizIndex={quizIndex}
+              selectedAnswer={answers[quizIndex - 1]}
+              setSelectedAnswer={setAnswers[quizIndex - 1]}
+            />
+          )
         );
       case 'results':
         return <Results answers={answers} />;
