@@ -10,7 +10,7 @@ import { useRouter } from 'next/router';
 
 export default function QuizDetail() {
   const router = useRouter();
-  const quizIndex = parseFloat(router.query.quizIndex);
+  const quizIndex = router.query.quizIndex;
 
   const [quizOneAnswer, setQuizOneAnswer] = useState(null);
   const [quizTwoAnswer, setQuizTwoAnswer] = useState({});
@@ -40,9 +40,9 @@ export default function QuizDetail() {
         return (
           quizIndex && (
             <QuizForm
-              quizIndex={quizIndex}
-              selectedAnswer={answers[quizIndex - 1]}
-              setSelectedAnswer={setAnswers[quizIndex - 1]}
+              quizIndex={+quizIndex}
+              selectedAnswer={answers[+quizIndex - 1]}
+              setSelectedAnswer={setAnswers[+quizIndex - 1]}
             />
           )
         );
