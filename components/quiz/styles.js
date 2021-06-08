@@ -163,6 +163,10 @@ export const Description = styled.p`
   ${description}
 `;
 
+export const Results = styled.div`
+  ${flexColumn}
+`;
+
 export const DotVariants = {
   hidden: { scale: 0 },
   visible: { scale: 1 },

@@ -3,10 +3,10 @@ import { ContentVariants } from 'components/about/styles';
 
 import QuizForm from 'components/quiz/QuizForm';
 import QuizSidebar from 'components/quiz/QuizSidebar';
+import Results from 'components/quiz/Results';
 
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Results from 'components/quiz/Results';
 
 export default function QuizDetail() {
   const router = useRouter();
@@ -18,7 +18,7 @@ export default function QuizDetail() {
   const [quizFourAnswer, setQuizFourAnswer] = useState(null);
   const [quizFiveAnswer, setQuizFiveAnswer] = useState(null);
 
-  const results = [
+  const answers = [
     quizOneAnswer,
     quizTwoAnswer,
     quizThreeAnswer,
@@ -31,7 +31,7 @@ export default function QuizDetail() {
       case '1':
         return (
           <QuizForm
-            quizIndex={0}
+            quizIndex={1}
             selectedAnswer={quizOneAnswer}
             setSelectedAnswer={setQuizOneAnswer}
           />
@@ -39,7 +39,7 @@ export default function QuizDetail() {
       case '2':
         return (
           <QuizForm
-            quizIndex={1}
+            quizIndex={2}
             selectedAnswer={quizTwoAnswer}
             setSelectedAnswer={setQuizTwoAnswer}
           />
@@ -47,7 +47,7 @@ export default function QuizDetail() {
       case '3':
         return (
           <QuizForm
-            quizIndex={2}
+            quizIndex={3}
             selectedAnswer={quizThreeAnswer}
             setSelectedAnswer={setQuizThreeAnswer}
           />
@@ -55,7 +55,7 @@ export default function QuizDetail() {
       case '4':
         return (
           <QuizForm
-            quizIndex={3}
+            quizIndex={4}
             selectedAnswer={quizFourAnswer}
             setSelectedAnswer={setQuizFourAnswer}
           />
@@ -63,13 +63,13 @@ export default function QuizDetail() {
       case '5':
         return (
           <QuizForm
-            quizIndex={4}
+            quizIndex={5}
             selectedAnswer={quizFiveAnswer}
             setSelectedAnswer={setQuizFiveAnswer}
           />
         );
       case 'results':
-        return <Results results={results} />;
+        return <Results answers={answers} />;
     }
   };
 

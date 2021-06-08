@@ -10,6 +10,15 @@ export const QUIZ = {
       ],
     },
     {
+      question: 'What type of grid does the code above create?',
+      answers: [
+        'A grid with 2 columns of 200px width each and 3 rows with 300 px height each.',
+        'A grid with 2 columns of 200px width each and 2 rows with 300px height each.',
+        'A flexbox layout.',
+        'A grid with 2 columns of 300px width and 2 rows of 200 px width each.',
+      ],
+    },
+    {
       question: 'Recreate the 5x3 grid above using the same area names.',
       answers: null,
     },
@@ -48,6 +57,11 @@ export const QUIZ = {
       { indent: '0', text: 'grid-template-columns: 200px 120px 250px;' },
       { indent: '0', text: 'grid-template-rows: 400px 300px;' },
     ],
+    [
+      { indent: '0', text: 'display: grid;' },
+      { indent: '0', text: 'grid-template-columns: 200px 200px;' },
+      { indent: '0', text: 'grid-template-rows: 300px 300px;' },
+    ],
     [{ noCodeSnippets: true }],
     [
       { indent: '0', text: '.grid-item' },
@@ -57,5 +71,16 @@ export const QUIZ = {
     ],
     [{ noCodeSnippets: true }],
     [{ indent: '0', text: 'grid-gap: 5px' }],
+  ],
+  correctAnswers: [
+    1,
+    {
+      line1: 'header header header header header',
+      line2: 'ads main_content main_content . sidebar',
+      line3: 'footer footer footer footer footer',
+    },
+    2,
+    1,
+    3,
   ],
 };

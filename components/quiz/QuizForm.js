@@ -50,9 +50,9 @@ export default function QuizForm({
 
   const renderButton = () => {
     switch (quizIndex) {
-      case 0:
+      case 1:
         return <ButtonPrimary href="/quiz/2">Next Question</ButtonPrimary>;
-      case 4:
+      case 5:
         return (
           <Styled.FlexContainer>
             <ButtonPrimary href="/quiz/4">Previous Question</ButtonPrimary>
@@ -62,10 +62,10 @@ export default function QuizForm({
       default:
         return (
           <Styled.FlexContainer>
-            <ButtonPrimary href={`/quiz/${quizIndex}`}>
+            <ButtonPrimary href={`/quiz/${quizIndex - 1}`}>
               Previous Question
             </ButtonPrimary>
-            <ButtonPrimary href={`/quiz/${quizIndex + 2}`}>
+            <ButtonPrimary href={`/quiz/${quizIndex + 1}`}>
               Next Question
             </ButtonPrimary>
           </Styled.FlexContainer>
@@ -114,7 +114,7 @@ export default function QuizForm({
   return (
     <Styled.QuizForm>
       <Styled.Header>
-        {sample ? 'Sample Question' : `Question ${quizIndex + 1}`}
+        {sample ? 'Sample Question' : `Question ${quizIndex}`}
       </Styled.Header>
 
       {hasCode && renderCode()}
@@ -125,7 +125,7 @@ export default function QuizForm({
 
       {answers && renderAnswer()}
 
-      {quizIndex === 1 && renderInputArea()}
+      {quizIndex === 2 && renderInputArea()}
 
       {sample ? (
         <Styled.PopUp>
