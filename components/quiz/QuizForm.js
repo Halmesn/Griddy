@@ -78,6 +78,12 @@ export default function QuizForm({
     controls.start('visible');
   };
 
+  const onInputChange = (e, position) => {
+    const answerObjectCopy = { ...selectedAnswer };
+    answerObjectCopy[position] = e.target.value;
+    setSelectedAnswer(answerObjectCopy);
+  };
+
   return (
     <Styled.QuizForm>
       <Styled.Header>
@@ -92,13 +98,31 @@ export default function QuizForm({
         <Styled.CodeContainer margin="1.6rem 0">
           <Styled.Code>grid-template-areas:</Styled.Code>
           <Styled.Code textIndent="1.6rem">
-            "<Styled.CodeInput width="24rem" />"
+            "
+            <Styled.CodeInput
+              width="24rem"
+              onChange={(e) => onInputChange(e, 'line1')}
+              value={selectedAnswer['line1'] ?? ''}
+            />
+            "
           </Styled.Code>
           <Styled.Code textIndent="1.6rem">
-            "<Styled.CodeInput width="24rem" />"
+            "
+            <Styled.CodeInput
+              width="24rem"
+              onChange={(e) => onInputChange(e, 'line2')}
+              value={selectedAnswer['line2'] ?? ''}
+            />
+            "
           </Styled.Code>
           <Styled.Code textIndent="1.6rem">
-            "<Styled.CodeInput width="24rem" />"
+            "
+            <Styled.CodeInput
+              width="24rem"
+              onChange={(e) => onInputChange(e, 'line3')}
+              value={selectedAnswer['line3'] ?? ''}
+            />
+            "
           </Styled.Code>
           ;
         </Styled.CodeContainer>

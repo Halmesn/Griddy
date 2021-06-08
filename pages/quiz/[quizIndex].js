@@ -13,7 +13,7 @@ export default function QuizDetail() {
   const quizIndex = router.query.quizIndex;
 
   const [quizOneAnswer, setQuizOneAnswer] = useState(null);
-  const [quizTwoAnswer, setQuizTwoAnswer] = useState(null);
+  const [quizTwoAnswer, setQuizTwoAnswer] = useState({});
   const [quizThreeAnswer, setQuizThreeAnswer] = useState(null);
   const [quizFourAnswer, setQuizFourAnswer] = useState(null);
   const [quizFiveAnswer, setQuizFiveAnswer] = useState(null);
@@ -25,6 +25,8 @@ export default function QuizDetail() {
     quizFourAnswer,
     quizFiveAnswer,
   ];
+
+  console.log(quizTwoAnswer);
 
   const renderQuizForm = () => {
     switch (quizIndex) {
