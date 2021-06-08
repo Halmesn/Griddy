@@ -80,37 +80,28 @@ export default function QuizForm({
       setSelectedAnswer(answerObjectCopy);
     };
 
+    const renderInputs = () => {
+      const inputs = [];
+      for (let i = 0; i < 3; i++) {
+        inputs.push(
+          <Styled.Code textIndent="1.6rem" key={`input-${i + 1}`}>
+            "
+            <Styled.CodeInput
+              width="24rem"
+              onChange={(e) => onInputChange(e, `line${i + 1}`)}
+              value={selectedAnswer[`line${i + 1}`] ?? ''}
+            />
+            "
+          </Styled.Code>
+        );
+      }
+      return inputs;
+    };
+
     return (
       <Styled.CodeContainer margin="1.6rem 0">
         <Styled.Code>grid-template-areas:</Styled.Code>
-        <Styled.Code textIndent="1.6rem">
-          "
-          <Styled.CodeInput
-            width="24rem"
-            onChange={(e) => onInputChange(e, 'line1')}
-            value={selectedAnswer['line1'] ?? ''}
-          />
-          "
-        </Styled.Code>
-        <Styled.Code textIndent="1.6rem">
-          "
-          <Styled.CodeInput
-            width="24rem"
-            onChange={(e) => onInputChange(e, 'line2')}
-            value={selectedAnswer['line2'] ?? ''}
-          />
-          "
-        </Styled.Code>
-        <Styled.Code textIndent="1.6rem">
-          "
-          <Styled.CodeInput
-            width="24rem"
-            onChange={(e) => onInputChange(e, 'line3')}
-            value={selectedAnswer['line3'] ?? ''}
-          />
-          "
-        </Styled.Code>
-        ;
+        {renderInputs().map((input) => input)};
       </Styled.CodeContainer>
     );
   };

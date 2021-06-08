@@ -26,8 +26,6 @@ export default function QuizDetail() {
     quizFiveAnswer,
   ];
 
-  console.log(quizTwoAnswer);
-
   const renderQuizForm = () => {
     switch (quizIndex) {
       case '1':
