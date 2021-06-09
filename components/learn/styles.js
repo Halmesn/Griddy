@@ -7,5 +7,3 @@ export const LessonContainer = styled(motion.section)`
   transition: padding 0.15s ease-in-out;
   overflow-x: hidden;
 `;
-
-export const LessonSidebar = styled(motion.div)``;

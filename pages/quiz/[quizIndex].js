@@ -5,34 +5,15 @@ import QuizForm from 'components/quiz/QuizForm';
 import QuizSidebar from 'components/quiz/QuizSidebar';
 import Results from 'components/quiz/Results';
 
-import { useState } from 'react';
+import useQuizChoice from 'hooks/useQuizChoice';
+
 import { useRouter } from 'next/router';
 
 export default function QuizDetail() {
   const router = useRouter();
-  const quizIndex = router.query.quizIndex;
+  const { quizIndex } = router.query;
 
-  const [quizOneChoice, setQuizOneChoice] = useState(null);
-  const [quizTwoChoice, setQuizTwoChoice] = useState({});
-  const [quizThreeChoice, setQuizThreeChoice] = useState(null);
-  const [quizFourChoice, setQuizFourChoice] = useState(null);
-  const [quizFiveChoice, setQuizFiveChoice] = useState(null);
-
-  const choices = [
-    quizOneChoice,
-    quizTwoChoice,
-    quizThreeChoice,
-    quizFourChoice,
-    quizFiveChoice,
-  ];
-
-  const setChoices = [
-    setQuizOneChoice,
-    setQuizTwoChoice,
-    setQuizThreeChoice,
-    setQuizFourChoice,
-    setQuizFiveChoice,
-  ];
+  const [choices, setChoices] = useQuizChoice();
 
   const renderQuizForm = () => {
     switch (quizIndex) {
