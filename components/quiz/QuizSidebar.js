@@ -18,6 +18,7 @@ export default function QuizSidebar() {
       links={links}
       showSidebar={showSidebar}
       setShowSidebar={setShowSidebar}
+      quiz
     >
       Questions
     </Sidebar>

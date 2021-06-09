@@ -24,6 +24,7 @@ export const Sidebar = styled(motion.div)`
 
 export const MenuContainer = styled.div`
   position: absolute;
+  top: 1.5rem;
   cursor: pointer;
   height: 2.2rem;
 
@@ -75,7 +76,7 @@ export const Links = styled(NextLink)`
   user-select: none;
 
   ${flexBetween}
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: ${({ theme }) => theme.colors.primary};
   font-family: ${({ theme }) => theme.fonts.primary};
   padding: 1.2rem 0.48rem 1.2rem 1.2rem;
@@ -93,7 +94,12 @@ export const Links = styled(NextLink)`
   }
 `;
 
-export const sidebarVariants = {
+export const QuizSidebarVariants = {
   hidden: { width: 52, height: 52 },
-  visible: { width: 230, height: 450 },
+  visible: { width: 230, height: 430 },
+};
+
+export const LessonSidebarVariants = {
+  hidden: { width: 52, height: 52 },
+  visible: { width: 260, height: 370 },
 };

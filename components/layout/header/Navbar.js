@@ -14,7 +14,7 @@ export default function NavBar() {
   const router = useRouter();
 
   const links = [
-    { text: 'Learn', href: '/learn' },
+    { text: 'Learn', href: '/learn/1' },
     { text: 'Quiz', href: '/quiz' },
     { text: 'About', href: '/about' },
   ];

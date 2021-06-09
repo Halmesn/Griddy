@@ -9,6 +9,7 @@ export default function Sidebar({
   showSidebar,
   setShowSidebar,
   children,
+  quiz,
 }) {
   const controls = useAnimation();
   const router = useRouter();
@@ -34,7 +35,9 @@ export default function Sidebar({
     <Styled.Sidebar
       animate={controls}
       initial="hidden"
-      variants={Styled.sidebarVariants}
+      variants={
+        quiz ? Styled.QuizSidebarVariants : Styled.LessonSidebarVariants
+      }
     >
       <Styled.MenuContainer
         showSidebar={showSidebar}

@@ -32,7 +32,7 @@ export default function Results({ choices }) {
       correctAnswer: 1,
       isShowing: !(choices[0] === 1),
       feedbackText: 'You may want to review CSS grid creation.',
-      feedbackLink: '/learn',
+      feedbackLink: '/learn/1',
     },
     {
       userChoice: choices[1],

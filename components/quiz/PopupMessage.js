@@ -50,7 +50,7 @@ export default function PopUpMessage({ controls, solution, choices }) {
             </Styled.MessageTitle>
 
             <Styled.MessageDescription margin="0 0 2rem 0">
-              <Link href="/learn">Go to lessons</Link>
+              <Link href="/learn/1">Go to lessons</Link>
             </Styled.MessageDescription>
           </>
         );

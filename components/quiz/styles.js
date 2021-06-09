@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import {
-  header,
-  description,
-  flexColumn,
-  flexCenter,
-  flexBetween,
-} from 'styles/Mixins';
+import { header, description, flexColumn, flexCenter } from 'styles/Mixins';
 
 export const QuizForm = styled(motion.div)`
   ${flexColumn}

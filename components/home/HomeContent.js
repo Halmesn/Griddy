@@ -20,7 +20,7 @@ export default function HomeContent() {
         >
           where anyone can learn CSS Grid in an easy and interactive way!
         </Styled.Description>
-        <ButtonPrimary href="/learn">Start learning</ButtonPrimary>
+        <ButtonPrimary href="/learn/1">Start learning</ButtonPrimary>
       </Styled.TextContainer>
       <Styled.FlexContainer></Styled.FlexContainer>
       <Styled.TextContainer>
