@@ -12,26 +12,26 @@ export default function QuizDetail() {
   const router = useRouter();
   const quizIndex = router.query.quizIndex;
 
-  const [quizOneAnswer, setQuizOneAnswer] = useState(null);
-  const [quizTwoAnswer, setQuizTwoAnswer] = useState({});
-  const [quizThreeAnswer, setQuizThreeAnswer] = useState(null);
-  const [quizFourAnswer, setQuizFourAnswer] = useState(null);
-  const [quizFiveAnswer, setQuizFiveAnswer] = useState(null);
+  const [quizOneChoice, setQuizOneChoice] = useState(null);
+  const [quizTwoChoice, setQuizTwoChoice] = useState({});
+  const [quizThreeChoice, setQuizThreeChoice] = useState(null);
+  const [quizFourChoice, setQuizFourChoice] = useState(null);
+  const [quizFiveChoice, setQuizFiveChoice] = useState(null);
 
-  const answers = [
-    quizOneAnswer,
-    quizTwoAnswer,
-    quizThreeAnswer,
-    quizFourAnswer,
-    quizFiveAnswer,
+  const choices = [
+    quizOneChoice,
+    quizTwoChoice,
+    quizThreeChoice,
+    quizFourChoice,
+    quizFiveChoice,
   ];
 
-  const setAnswers = [
-    setQuizOneAnswer,
-    setQuizTwoAnswer,
-    setQuizThreeAnswer,
-    setQuizFourAnswer,
-    setQuizFiveAnswer,
+  const setChoices = [
+    setQuizOneChoice,
+    setQuizTwoChoice,
+    setQuizThreeChoice,
+    setQuizFourChoice,
+    setQuizFiveChoice,
   ];
 
   const renderQuizForm = () => {
@@ -41,13 +41,13 @@ export default function QuizDetail() {
           quizIndex && (
             <QuizForm
               quizIndex={+quizIndex}
-              selectedAnswer={answers[+quizIndex - 1]}
-              setSelectedAnswer={setAnswers[+quizIndex - 1]}
+              selectedChoice={choices[+quizIndex - 1]}
+              setSelectedChoice={setChoices[+quizIndex - 1]}
             />
           )
         );
       case 'results':
-        return <Results answers={answers} />;
+        return <Results choices={choices} />;
     }
   };
 

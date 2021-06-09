@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { header, description, flexColumn, flexCenter } from 'styles/Mixins';
+import {
+  header,
+  description,
+  flexColumn,
+  flexCenter,
+  flexBetween,
+} from 'styles/Mixins';
 
 export const QuizForm = styled(motion.div)`
   ${flexColumn}
@@ -46,7 +52,7 @@ export const CodeInput = styled.input`
   width: ${({ width }) => width || '12.8rem'};
 `;
 
-export const AnswerContainer = styled.div`
+export const ChoiceContainer = styled.div`
   margin: 0.55rem 0;
 `;
 
@@ -79,7 +85,7 @@ export const RadioDot = styled(motion.div)`
   transition: background 0.15s;
 `;
 
-export const Answer = styled(motion.div)`
+export const Choice = styled(motion.div)`
   background: ${({ theme }) => theme.colors.lowContrastBackground};
   padding: 1.6rem;
   text-align: left;
@@ -167,6 +173,58 @@ export const Results = styled.div`
   ${flexColumn}
 `;
 
+export const FeedbackList = styled.ul`
+  margin: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  @media only screen and (max-width: 48em) {
+    align-items: center;
+  }
+`;
+
+export const Feedback = styled.li`
+  font-family: ${({ theme }) => theme.fonts.primary};
+  color: rgb(114, 28, 36);
+  background: rgb(248, 215, 218);
+  border-radius: 0.5rem;
+  margin: 0px 0px 0.75rem;
+  font-size: 1.6rem;
+  width: 40rem;
+  position: relative;
+  font-weight: bold;
+`;
+
+export const FeedbackTitle = styled.div`
+  cursor: pointer;
+  padding: 1.6rem;
+
+  div {
+    position: absolute;
+    top: 1.7rem;
+    right: 1rem;
+  }
+
+  svg {
+    height: 1.8rem;
+    width: 1.8rem;
+    fill: rgb(114, 28, 36);
+  }
+`;
+
+export const FeedbackBody = styled(motion.div)`
+  background: rgb(248, 215, 218);
+  color: rgb(114, 28, 36);
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  span {
+    display: inline-block;
+    padding: 0 1.6rem 1.6rem;
+    margin-bottom: 1rem;
+  }
+`;
+
 export const DotVariants = {
   hidden: { scale: 0 },
   visible: { scale: 1 },
@@ -175,6 +233,29 @@ export const DotVariants = {
 export const MessageVariants = {
   hidden: { scale: 0, opacity: 0 },
   visible: { scale: [0.9, 1.1, 1], opacity: 1, transition: { duration: 0.6 } },
+};
+
+export const IconVariants = {
+  close: { rotate: -45 },
+  open: {
+    rotate: 0,
+    transition: {
+      duration: 0.1,
+      ease: 'easeInOut',
+    },
+  },
+};
+
+export const FeedbackBodyVariants = {
+  close: { opacity: 0, height: 0 },
+  open: {
+    height: 'auto',
+    opacity: 1,
+    transition: {
+      duration: 0.3,
+      ease: 'easeInOut',
+    },
+  },
 };
 
 export const CloseIcon = () => {

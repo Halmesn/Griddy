@@ -1,6 +1,6 @@
 import * as Styled from './styles';
 
-import Answer from './Answer';
+import Choice from './Choice';
 import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 import PopUpMessage from './PopupMessage';
 
@@ -12,13 +12,13 @@ import { useAnimation } from 'framer-motion';
 export default function QuizForm({
   quizIndex,
   sample,
-  selectedAnswer,
-  setSelectedAnswer,
+  selectedChoice,
+  setSelectedChoice,
 }) {
   const codeSnippets = QUIZ.codeSnippets[quizIndex];
   const hasCode = codeSnippets.some(({ noCodeSnippets }) => !noCodeSnippets);
 
-  const { question, answers } = QUIZ.questions[quizIndex];
+  const { question, choices } = QUIZ.questions[quizIndex];
 
   const [solution, setSolution] = useState(null);
 
@@ -34,18 +34,18 @@ export default function QuizForm({
     </Styled.CodeContainer>
   );
 
-  const renderAnswer = () => (
-    <Styled.AnswerContainer>
-      {answers.map((answer, index) => (
-        <Answer
-          key={`answer-${index}`}
-          answer={answer}
+  const renderChoice = () => (
+    <Styled.ChoiceContainer>
+      {choices.map((choice, index) => (
+        <Choice
+          key={`choice-${index}`}
+          choice={choice}
           index={index}
-          selectedAnswer={selectedAnswer}
-          setSelectedAnswer={setSelectedAnswer}
+          selectedChoice={selectedChoice}
+          setSelectedChoice={setSelectedChoice}
         />
       ))}
-    </Styled.AnswerContainer>
+    </Styled.ChoiceContainer>
   );
 
   const renderButton = () => {
@@ -75,9 +75,9 @@ export default function QuizForm({
 
   const renderInputArea = () => {
     const onInputChange = (e, position) => {
-      const answerObjectCopy = { ...selectedAnswer };
-      answerObjectCopy[position] = e.target.value;
-      setSelectedAnswer(answerObjectCopy);
+      const choiceObjectCopy = { ...selectedChoice };
+      choiceObjectCopy[position] = e.target.value;
+      setSelectedChoice(choiceObjectCopy);
     };
 
     const renderInputs = () => {
@@ -89,7 +89,7 @@ export default function QuizForm({
             <Styled.CodeInput
               width="24rem"
               onChange={(e) => onInputChange(e, `line${i + 1}`)}
-              value={selectedAnswer[`line${i + 1}`] ?? ''}
+              value={selectedChoice[`line${i + 1}`] ?? ''}
             />
             "
           </Styled.Code>
@@ -107,7 +107,7 @@ export default function QuizForm({
   };
 
   const onSolutionCheck = () => {
-    setSolution(selectedAnswer);
+    setSolution(selectedChoice);
     controls.start('visible');
   };
 
@@ -123,7 +123,7 @@ export default function QuizForm({
         {question}
       </Styled.SubHeader>
 
-      {answers && renderAnswer()}
+      {choices && renderChoice()}
 
       {quizIndex === 2 && renderInputArea()}
 
@@ -135,7 +135,7 @@ export default function QuizForm({
           <PopUpMessage
             solution={solution}
             controls={controls}
-            answers={answers}
+            choices={choices}
           />
         </Styled.PopUp>
       ) : (

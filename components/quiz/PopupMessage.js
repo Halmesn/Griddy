@@ -2,7 +2,7 @@ import * as Styled from './styles';
 
 import Link from 'next/link';
 
-export default function PopUpMessage({ controls, solution, answers }) {
+export default function PopUpMessage({ controls, solution, choices }) {
   const renderMessage = () => {
     switch (solution) {
       case null:
@@ -36,13 +36,13 @@ export default function PopUpMessage({ controls, solution, answers }) {
             </Styled.MessageTitle>
 
             <Styled.MessageDescription>
-              "{answers[solution]}"
+              "{choices[solution]}"
             </Styled.MessageDescription>
 
             <Styled.MessageTitle>The correct answer is:</Styled.MessageTitle>
 
             <Styled.MessageDescription>
-              "{answers[3]}"
+              "{choices[3]}"
             </Styled.MessageDescription>
 
             <Styled.MessageTitle>

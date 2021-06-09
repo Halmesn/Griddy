@@ -2,7 +2,7 @@ export const QUIZ = {
   questions: [
     {
       question: 'What type of grid does the code above create?',
-      answers: [
+      choices: [
         'A grid with 2 columns of 200px width each and 3 rows with 300 px height each.',
         'A grid with 2 columns of 400px and 300px width and 3 rows with 200px, 120px, and 250px width.',
         'A flexbox layout.',
@@ -11,7 +11,7 @@ export const QUIZ = {
     },
     {
       question: 'What type of grid does the code above create?',
-      answers: [
+      choices: [
         'A grid with 2 columns of 200px width each and 3 rows with 300 px height each.',
         'A grid with 2 columns of 200px width each and 2 rows with 300px height each.',
         'A flexbox layout.',
@@ -20,11 +20,11 @@ export const QUIZ = {
     },
     {
       question: 'Recreate the 5x3 grid above using the same area names.',
-      answers: null,
+      choices: null,
     },
     {
       question: 'How is the grid item aligned based on the above code?',
-      answers: [
+      choices: [
         'It is aligned to the top vertically and to the right horizontally.',
         'It is aligned to the left horizontally and to the top vertically.',
         'It is aligned to the right horizontally and to the bottom vertically.',
@@ -34,7 +34,7 @@ export const QUIZ = {
     {
       question:
         'What is the advantage of using fractional units over other units like percentages?',
-      answers: [
+      choices: [
         'There is no advantage.',
         'Fractional units only use the remaining free space, while other units use all of the space.',
         'It does not take into account the grid gap property, while percentages do.',
@@ -43,7 +43,7 @@ export const QUIZ = {
     },
     {
       question: 'What does the above CSS code do?',
-      answers: [
+      choices: [
         'It gives a horizontal gap of 10px and a vertical gap of 5px between grid items.',
         'It gives a vertical gap of 10px and a horizontal gap of 5px between two grids.',
         'It gives a vertical gap of 10px and a horizontal gap of 5px between grid items.',

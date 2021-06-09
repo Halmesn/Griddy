@@ -8,7 +8,7 @@ import QuizForm from 'components/quiz/QuizForm';
 
 export default function HomeContent() {
   const { windowWidth } = useContext(GriddyContext);
-  const [selectedAnswer, setSelectedAnswer] = useState(null);
+  const [selectedChoice, setSelectedChoice] = useState(null);
 
   return (
     <Styled.HomeContent>
@@ -39,8 +39,8 @@ export default function HomeContent() {
         <QuizForm
           quizIndex={0}
           sample
-          selectedAnswer={selectedAnswer}
-          setSelectedAnswer={setSelectedAnswer}
+          selectedChoice={selectedChoice}
+          setSelectedChoice={setSelectedChoice}
         />
       </Styled.FlexContainer>
     </Styled.HomeContent>

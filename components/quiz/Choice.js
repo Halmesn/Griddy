@@ -1,15 +1,15 @@
 import * as Styled from './styles';
 
-export default function Answer({
-  answer,
-  selectedAnswer,
+export default function Choice({
+  choice,
+  selectedChoice,
   index,
-  setSelectedAnswer,
+  setSelectedChoice,
 }) {
   return (
-    <Styled.FlexContainer onClick={() => setSelectedAnswer(index)}>
+    <Styled.FlexContainer onClick={() => setSelectedChoice(index)}>
       <Styled.RadioButton>
-        {selectedAnswer === index && (
+        {selectedChoice === index && (
           <Styled.RadioDot
             variants={Styled.DotVariants}
             initial="hidden"
@@ -18,9 +18,9 @@ export default function Answer({
           />
         )}
       </Styled.RadioButton>
-      <Styled.Answer fontSize="1.85em" margin="1.2rem 1.6rem">
-        {answer}
-      </Styled.Answer>
+      <Styled.Choice fontSize="1.85em" margin="1.2rem 1.6rem">
+        {choice}
+      </Styled.Choice>
     </Styled.FlexContainer>
   );
 }
