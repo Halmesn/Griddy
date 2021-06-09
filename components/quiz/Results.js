@@ -7,17 +7,11 @@ export default function Results({ choices }) {
   const { correctAnswers, questions } = QUIZ;
 
   const isGridAreaCorrect = () => {
-    const correctAnswer = Object.keys(correctAnswers[1]);
-    const userChoice = Object.keys(
-      choices[1] ?? {
-        line1: '',
-        line2: '',
-        line3: '',
-      }
-    );
+    const correctAnswer = Object.values(correctAnswers[1]);
+    const userChoice = Object.values(choices[1]);
 
-    for (let key of correctAnswer)
-      if (correctAnswer[key] !== userChoice[key]) return false;
+    for (let i = 0; i < correctAnswer.length; i++)
+      if (correctAnswer[i] !== userChoice[i]) return false;
 
     return true;
   };
@@ -44,7 +38,7 @@ export default function Results({ choices }) {
       userChoice: choices[1],
       choices: null,
       correctAnswer: correctAnswers[1],
-      isShowing: isGridAreaCorrect(),
+      isShowing: !isGridAreaCorrect(),
       feedbackText: 'You may want to review grid areas.',
       feedbackLink: '/learn/3',
     },

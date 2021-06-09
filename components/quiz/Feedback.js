@@ -21,32 +21,37 @@ export default function Feedback({ feedback, index }) {
   const renderFeedback = () => {
     switch (index) {
       case 1:
+        let choiceArray = ['', '', ''];
+        if (Object.keys(userChoice).length !== 0)
+          choiceArray = Object.values(userChoice);
         return (
           <>
             <Styled.MessageTitle fontSize="1.4rem">
               You wrote:
             </Styled.MessageTitle>
-            <Styled.MessageDescription fontSize="1.2rem">
-              "{userChoice.line1}"
-            </Styled.MessageDescription>
-            <Styled.MessageDescription fontSize="1.2rem">
-              "{userChoice.line2}"
-            </Styled.MessageDescription>
-            <Styled.MessageDescription fontSize="1.2rem">
-              "{userChoice.line3}"
-            </Styled.MessageDescription>
+
+            {choiceArray.map((choice, index) => (
+              <Styled.MessageDescription
+                fontSize="1.2rem"
+                key={`${choice}-${index}`}
+              >
+                "{choice}"
+              </Styled.MessageDescription>
+            ))}
+
             <Styled.MessageTitle fontSize="1.4rem">
               The correct answer is:
             </Styled.MessageTitle>
-            <Styled.MessageDescription fontSize="1.2rem">
-              "{correctAnswer.line1}"
-            </Styled.MessageDescription>
-            <Styled.MessageDescription fontSize="1.2rem">
-              "{correctAnswer.line2}"
-            </Styled.MessageDescription>
-            <Styled.MessageDescription fontSize="1.2rem" margin="0 0 1rem 0">
-              "{correctAnswer.line3}"
-            </Styled.MessageDescription>
+
+            {Object.values(correctAnswer).map((answer) => (
+              <Styled.MessageDescription fontSize="1.2rem" key={answer}>
+                "{answer}"
+              </Styled.MessageDescription>
+            ))}
+
+            <Styled.MessageTitle fontSize="1.4rem">
+              {feedbackText}
+            </Styled.MessageTitle>
           </>
         );
       default:
@@ -73,11 +78,16 @@ export default function Feedback({ feedback, index }) {
       <Styled.Feedback>
         <Styled.FeedbackTitle onClick={toggleOpen}>
           {`Your answer to question ${index + 1} is wrong`}
-          <motion.div animate={animation} variants={Styled.IconVariants}>
+          <motion.div
+            initial="close"
+            animate={animation}
+            variants={Styled.IconVariants}
+          >
             <Styled.CloseIcon />
           </motion.div>
         </Styled.FeedbackTitle>
         <Styled.FeedbackBody
+          initial="close"
           animate={animation}
           variants={Styled.FeedbackBodyVariants}
         >
