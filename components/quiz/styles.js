@@ -193,16 +193,28 @@ export const Feedback = styled.li`
   width: 40rem;
   position: relative;
   font-weight: bold;
+
+  @media only screen and (max-width: 33.75em) {
+    width: 30rem;
+  }
 `;
 
 export const FeedbackTitle = styled.div`
   cursor: pointer;
   padding: 1.6rem;
 
+  @media only screen and (max-width: 33.75em) {
+    padding-right: 2.2rem;
+  }
+
   div {
     position: absolute;
     top: 1.7rem;
     right: 1rem;
+
+    @media only screen and (max-width: 33.75em) {
+      right: 0.5rem;
+    }
   }
 
   svg {
