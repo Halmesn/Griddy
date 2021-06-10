@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 import { header, description, flexColumn, flexCenter } from 'styles/Mixins';
 import {
@@ -23,6 +23,15 @@ export const SubHeader = styled.h2`
 
 export const Description = styled.p`
   ${description}
+`;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  width: ${({ width }) => width};
+  flex-direction: ${({ flexDirection }) => flexDirection || 'row'};
+  justify-content: ${({ justifyContent }) => justifyContent || 'center'};
+  align-items: ${({ alignItems }) => alignItems || 'center'};
+  padding: ${({ padding }) => padding};
 `;
 
 export const GridContainer = styled.div`
@@ -66,6 +75,14 @@ export const SandboxGrid = styled.div`
   grid-template-rows: ${({ templateRows }) => templateRows};
   height: 100%;
   overflow: auto;
+
+  ${({ lessonIndex }) =>
+    lessonIndex === 2 &&
+    css`
+      display: grid;
+      grid-template-columns: 50% 50%;
+      grid-template-rows: 133px 133px 133px;
+    `}
 `;
 
 export const FourLeafClover = styled(motion.div)`
@@ -73,7 +90,9 @@ export const FourLeafClover = styled(motion.div)`
   width: 4rem;
   margin: 1rem;
   font-size: 4rem;
-  place-self: center;
+  justify-self: ${({ justifySelf }) => justifySelf || 'center'};
+  align-self: ${({ alignSelf }) => alignSelf || 'center'};
+
   ${flexCenter}
 `;
 

@@ -30,7 +30,7 @@ export const lightTheme = {
     code: '"Source Code Pro", monospace',
   },
   colors: {
-    primary: '#FFFFFFE6',
+    primary: '#ffffff',
     background: '#5DA449',
     buttonPrimary: '#DA931E',
     inactive: '#FFFFFF99',

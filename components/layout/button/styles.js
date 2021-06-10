@@ -13,15 +13,8 @@ export const Button = styled(motion.button)`
   color: ${({ theme }) => theme.colors.primary};
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
-  ${({ useCase }) =>
-    useCase === 'warning' &&
-    css`
-      background: #ffc107;
-      color: black;
-    `}
-
-  ${({ useCase }) =>
-    useCase === 'danger' &&
+  ${({ reset }) =>
+    reset &&
     css`
       background: #dc3545;
       color: white;
