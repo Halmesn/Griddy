@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { header, description, flexColumn, flexCenter } from 'styles/Mixins';
 
-export const QuizForm = styled(motion.div)`
+export const QuizForm = styled.div`
   ${flexColumn}
 `;
 
-export const Header = styled(motion.h2)`
+export const Header = styled.h2`
   ${header('h1')}
 `;
 
-export const SubHeader = styled(motion.h2)`
+export const SubHeader = styled.h2`
   ${header('h2')}
 `;
 

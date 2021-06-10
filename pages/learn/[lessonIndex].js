@@ -21,8 +21,8 @@ export default function LessonDetail() {
     lessonIndex && (
       <Lesson
         lessonIndex={+lessonIndex}
-        lessonData={lessonData}
-        setLessonData={setLessonData}
+        lessonData={lessonData[+lessonIndex - 1]}
+        setLessonData={setLessonData[+lessonIndex - 1]}
       />
     );
 

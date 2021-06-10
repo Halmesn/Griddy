@@ -30,6 +30,16 @@ export const positionCenter = css`
   transform: translate(-50%, -50%);
 `;
 
+const responsiveText = css`
+  ${({ responsive }) =>
+    responsive &&
+    css`
+      @media only screen and (max-width: 48em) {
+        text-align: center;
+      }
+    `}
+`;
+
 /**
  * Return different header styles.
  *
@@ -46,6 +56,8 @@ export const header = (htmlFor) => css`
   padding: ${({ padding }) => padding};
   display: ${({ display }) => display || 'block'};
   font-family: ${({ theme }) => theme.fonts.primary};
+  text-align: ${({ textAlign }) => textAlign};
+  ${responsiveText}
 
   ${htmlFor === 'h1' &&
   css`
@@ -73,4 +85,5 @@ export const description = css`
   font-size: ${({ fontSize }) => fontSize || '1.6rem'};
   text-align: ${({ textAlign }) => textAlign};
   line-height: ${({ lineHeight }) => lineHeight || '2.75rem'};
+  ${responsiveText}
 `;

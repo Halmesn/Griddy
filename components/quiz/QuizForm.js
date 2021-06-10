@@ -80,28 +80,22 @@ export default function QuizForm({
       setSelectedChoice(choiceObjectCopy);
     };
 
-    const renderInputs = () => {
-      const inputs = [];
-      for (let i = 0; i < 3; i++) {
-        inputs.push(
-          <Styled.Code textIndent="1.6rem" key={`input-${i + 1}`}>
-            "
-            <Styled.CodeInput
-              width="24rem"
-              onChange={(e) => onInputChange(e, `line${i + 1}`)}
-              value={selectedChoice[`line${i + 1}`] ?? ''}
-            />
-            "
-          </Styled.Code>
-        );
-      }
-      return inputs;
-    };
+    const inputs = [...Array(3)].map((val, i) => (
+      <Styled.Code textIndent="1.6rem" key={`input-${i + 1}`}>
+        "
+        <Styled.CodeInput
+          width="24rem"
+          onChange={(e) => onInputChange(e, `line${i + 1}`)}
+          value={selectedChoice[`line${i + 1}`] ?? ''}
+        />
+        "
+      </Styled.Code>
+    ));
 
     return (
       <Styled.CodeContainer margin="1.6rem 0">
         <Styled.Code>grid-template-areas:</Styled.Code>
-        {renderInputs().map((input) => input)};
+        {inputs}
       </Styled.CodeContainer>
     );
   };
