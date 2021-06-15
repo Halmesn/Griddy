@@ -85,7 +85,41 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 4:
-        return ``;
+        return (
+          <>
+            To space out grid items the{' '}
+            <Styled.CodeSnippet>grid-gap</Styled.CodeSnippet> property is
+            needed. For example,{' '}
+            <Styled.CodeSnippet>grid-gap: 8px 10px</Styled.CodeSnippet> gives a
+            gap of 8px between rows and 10px between columns. Try this out in
+            the sandbox.
+            <br />
+            <br />
+            One problem that should stand out is that the components overflow
+            out of the sandbox. This is undesirable. The way to fix this is to
+            use fractional units(fr) instead of percentages when defining{' '}
+            <Styled.CodeSnippet>
+              grid-template-columns
+            </Styled.CodeSnippet> and{' '}
+            <Styled.CodeSnippet>grid-template-rows</Styled.CodeSnippet>. The fr
+            unit only deals with the remaining space available(takes into
+            account grip gap) while percentages deal with the whole length.{' '}
+            <br />
+            <br />
+            Suppose you have a grid that is 2x2 and you want each row to take
+            1/2 of the height, the first column to take 1/4th of the remaining
+            width, and the second column to take 3/4ths of the remaining width.
+            Using fr units, this grid can be constructed by{' '}
+            <Styled.CodeSnippet>
+              grid-template-rows: 1fr 1fr
+            </Styled.CodeSnippet>{' '}
+            and
+            <Styled.CodeSnippet>
+              grid-template-columns: 1fr 3fr
+            </Styled.CodeSnippet>
+            .
+          </>
+        );
     }
   };
 
@@ -100,7 +134,16 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
         return `Recreate the grid below using grid areas. The sidebar should be 1/3
         of the width with the main content taking up the rest of the space.`;
       case 4:
-        return ``;
+        return (
+          <>
+            Set the <Styled.CodeSnippet>grid gap</Styled.CodeSnippet> to the
+            value specified in the info. Then fix the overflow in the sandbox by
+            converting the{' '}
+            <Styled.CodeSnippet>grid-template-columns</Styled.CodeSnippet> and{' '}
+            <Styled.CodeSnippet>grid-template-rows</Styled.CodeSnippet>{' '}
+            properties from percentages into fr.
+          </>
+        );
     }
   };
 
@@ -110,6 +153,8 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
       lessonDataCopy[property] = e.target.value;
       setLessonData(lessonDataCopy);
     };
+
+    const lessonDataKeys = Object.keys(lessonData).slice(1, 4);
 
     switch (lessonIndex) {
       case 1:
@@ -171,7 +216,6 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 3:
-        const lessonTemplates = Object.keys(lessonData).slice(1, 4);
         const lessonAreas = [
           { name: 'header', background: '#ff5454', property: 'headerArea' },
           { name: 'sidebar', background: '#61cc9e', property: 'sidebarArea' },
@@ -182,7 +226,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           },
           { name: 'footer', background: '#54a3ff', property: 'footerArea' },
         ];
-        const renderTemplateInputs = lessonTemplates.map((key) => (
+        const renderTemplateInputs = lessonDataKeys.map((key) => (
           <Styled.Code textIndent="3.2rem" key={key}>
             "
             <Styled.CodeInput
@@ -230,7 +274,30 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 4:
-        return ``;
+        const cssPropertyArray = [
+          'grid-gap:',
+          'grid-template-columns:',
+          'grid-template-rows:',
+        ];
+        const cssInputs = lessonDataKeys.map((key, i) => (
+          <Styled.Code textIndent="1.6rem" key={key}>
+            {cssPropertyArray[i]}
+            <Styled.CodeInput
+              onChange={(e) => onInputChange(e, key)}
+              value={lessonData[key]}
+            />
+            ;
+          </Styled.Code>
+        ));
+        return (
+          <>
+            <Styled.Code>.container &#123;</Styled.Code>
+            <Styled.Code textIndent="1.6rem">display: grid;</Styled.Code>
+            {cssInputs}
+            <Styled.Code textIndent="1.6rem">background: #fbd590;</Styled.Code>
+            <Styled.Code>&#125;</Styled.Code>
+          </>
+        );
     }
   };
 
@@ -253,6 +320,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 3:
+      case 4:
         const formatInnerHTML = (string) =>
           string[0].toUpperCase() + string.slice(1).replace('-', ' ');
 
@@ -269,8 +337,6 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
             {innerHTML}
           </>
         );
-      case 4:
-        return ``;
     }
   };
 
@@ -304,7 +370,13 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
         });
         return;
       case 4:
-        return ``;
+        setLessonData({
+          solution: null,
+          gap: '8px 10px',
+          templateCols: '1fr 2fr',
+          templateRows: '1fr 8fr 1fr',
+        });
+        return;
     }
   };
 

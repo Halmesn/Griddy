@@ -112,6 +112,24 @@ export const SandboxGrid = styled.div`
             '${({ templateArea2 }) => templateArea2}'
             '${({ templateArea3 }) => templateArea3}';
         `;
+      case 4:
+        return css`
+          display: grid;
+          grid-template-columns: ${({ templateCols }) =>
+            templateCols || '33.333% 66.666%'};
+          grid-template-rows: ${({ templateRows }) =>
+            templateRows || '10% 80% 10%'};
+          grid-gap: ${({ gap }) => gap};
+          height: 100%;
+          text-align: center;
+          font-size: 1.92rem;
+          font-family: ${({ theme }) => theme.fonts.primary};
+          background: #fbd590;
+          grid-template-areas:
+            'header header header'
+            'sidebar main-content main-content'
+            'footer footer footer';
+        `;
     }
   }}
 `;

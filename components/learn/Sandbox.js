@@ -13,26 +13,39 @@ export default function Sandbox({ lessonIndex, lessonData }) {
         return leaves;
 
       case 3:
+      case 4:
         const { headerArea, sidebarArea, mainContentArea, footerArea } =
           lessonData;
         return (
           <>
-            <Styled.SandboxHeader layout headerArea={headerArea}>
+            <Styled.SandboxHeader
+              layout
+              headerArea={lessonIndex === 3 ? headerArea : 'header'}
+            >
               Header
             </Styled.SandboxHeader>
-            <Styled.SandboxSidebar layout sidebarArea={sidebarArea}>
+            <Styled.SandboxSidebar
+              layout
+              sidebarArea={lessonIndex === 3 ? sidebarArea : 'sidebar'}
+            >
               Sidebar
             </Styled.SandboxSidebar>
-            <Styled.SandboxMainContent layout mainContentArea={mainContentArea}>
+            <Styled.SandboxMainContent
+              layout
+              mainContentArea={
+                lessonIndex === 3 ? mainContentArea : 'main-content'
+              }
+            >
               Main Content
             </Styled.SandboxMainContent>
-            <Styled.SandboxFooter layout footerArea={footerArea}>
+            <Styled.SandboxFooter
+              layout
+              footerArea={lessonIndex === 3 ? footerArea : 'footer'}
+            >
               Footer
             </Styled.SandboxFooter>
           </>
         );
-      case 4:
-        return ``;
     }
   };
 
