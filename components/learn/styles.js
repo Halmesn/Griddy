@@ -43,7 +43,7 @@ export const GridContainer = styled.div`
     'css html';
 
   ${({ lessonIndex }) =>
-    lessonIndex === 3 &&
+    (lessonIndex === 3 || lessonIndex === 4) &&
     css`
       grid-template-areas:
         'sandbox info'
@@ -105,6 +105,7 @@ export const SandboxGrid = styled.div`
           grid-template-rows: 10% 80% 10%;
           height: 100%;
           text-align: center;
+          overflow: visible;
           font-size: 1.92rem;
           font-family: ${({ theme }) => theme.fonts.primary};
           grid-template-areas:
@@ -121,6 +122,7 @@ export const SandboxGrid = styled.div`
             templateRows || '10% 80% 10%'};
           grid-gap: ${({ gap }) => gap};
           height: 100%;
+          overflow: visible;
           text-align: center;
           font-size: 1.92rem;
           font-family: ${({ theme }) => theme.fonts.primary};

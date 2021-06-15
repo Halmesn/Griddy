@@ -7,7 +7,7 @@ import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 import QuizForm from 'components/quiz/QuizForm';
 
 export default function HomeContent() {
-  const { windowWidth } = useContext(GriddyContext);
+  const { windowWidth, theme } = useContext(GriddyContext);
   const [selectedChoice, setSelectedChoice] = useState(null);
 
   return (
@@ -22,7 +22,15 @@ export default function HomeContent() {
         </Styled.Description>
         <ButtonPrimary href="/learn/1">Start learning</ButtonPrimary>
       </Styled.TextContainer>
-      <Styled.FlexContainer></Styled.FlexContainer>
+      <Styled.FlexContainer>
+        <Styled.Video
+          src={`/video/grid-${theme}.mp4`}
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      </Styled.FlexContainer>
       <Styled.TextContainer>
         <Styled.Header>Test Your Knowledge</Styled.Header>
         <Styled.Description

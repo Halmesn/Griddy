@@ -422,6 +422,15 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
         <Styled.GridItem gridArea={'css'}>
           <Styled.SubHeader textAlign="center">CSS</Styled.SubHeader>
           <Styled.CodeContainer>{renderCSSCode()}</Styled.CodeContainer>
+          <Styled.FlexContainer
+            padding="2rem 0 0 0"
+            justifyContent="space-between"
+          >
+            <ButtonPrimary onClick={onSolutionBtnClick} margin="0">
+              Show Solution
+            </ButtonPrimary>
+            <ButtonPrimary margin="0">Finish Lesson</ButtonPrimary>
+          </Styled.FlexContainer>
         </Styled.GridItem>
 
         <Styled.GridItem gridArea={'html'}>
@@ -429,18 +438,6 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           <Styled.CodeContainer>{renderHTML()}</Styled.CodeContainer>
         </Styled.GridItem>
       </Styled.GridContainer>
-      <Styled.FlexContainer
-        padding={
-          windowWidth <= 768 ? '0 2.4rem 0 2.4rem' : '0 0.72rem 0 0.72rem'
-        }
-        width="50%"
-        justifyContent="space-between"
-      >
-        <ButtonPrimary onClick={onSolutionBtnClick}>
-          Show Solution
-        </ButtonPrimary>
-        <ButtonPrimary>Submit</ButtonPrimary>
-      </Styled.FlexContainer>
     </>
   );
 }

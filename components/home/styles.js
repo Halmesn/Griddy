@@ -31,6 +31,11 @@ export const TextContainer = styled(motion.div)`
   }
 `;
 
+export const Video = styled.video`
+  width: min(100%, 88rem);
+  margin-left: auto;
+`;
+
 export const FlexContainer = styled(motion.div)`
   ${flexColumn}
 `;
