@@ -1,6 +1,10 @@
 <h1 align="center">🍀 <a href="https://github.com/Halmesn/Griddy">Griddy</a></h1>
 <h3 align="center">Anyone can learn CSS Grid.</h3>
 
+<div align="center">
+    <img alt="Sandbox Example" src="https://github.com/Halmesn/Griddy/blob/main/public/images/grid-gif.gif" />
+</div>
+
 <h2>📚 Learn </h2>
 <ul>
     <li>Grid Creation</li>
