@@ -6,7 +6,7 @@ import LessonSidebar from 'components/learn/lessonSidebar';
 
 import useLessonData from 'hooks/useLessonData';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 export default function LessonDetail() {
@@ -16,6 +16,8 @@ export default function LessonDetail() {
   const [lessonData, setLessonData] = useLessonData();
 
   const [showSidebar, setShowSidebar] = useState(false);
+
+  useEffect(() => setShowSidebar(false), [lessonIndex]);
 
   const renderLesson = () =>
     lessonIndex && (

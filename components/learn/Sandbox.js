@@ -13,14 +13,31 @@ export default function Sandbox({ lessonIndex, lessonData }) {
         return leaves;
 
       case 3:
-        return ``;
+        const { headerArea, sidebarArea, mainContentArea, footerArea } =
+          lessonData;
+        return (
+          <>
+            <Styled.SandboxHeader layout headerArea={headerArea}>
+              Header
+            </Styled.SandboxHeader>
+            <Styled.SandboxSidebar layout sidebarArea={sidebarArea}>
+              Sidebar
+            </Styled.SandboxSidebar>
+            <Styled.SandboxMainContent layout mainContentArea={mainContentArea}>
+              Main Content
+            </Styled.SandboxMainContent>
+            <Styled.SandboxFooter layout footerArea={footerArea}>
+              Footer
+            </Styled.SandboxFooter>
+          </>
+        );
       case 4:
         return ``;
     }
   };
 
   return (
-    <Styled.Sandbox>
+    <Styled.Sandbox height={lessonIndex === 3 && '50rem'}>
       <Styled.SandboxGrid {...lessonData} layout lessonIndex={lessonIndex}>
         {renderGridItems()}
       </Styled.SandboxGrid>

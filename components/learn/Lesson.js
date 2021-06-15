@@ -1,11 +1,12 @@
 import * as Styled from './styles';
 
 import Sandbox from './Sandbox';
+import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 
 import { GriddyContext } from 'components/layout/Layout';
 
-import { useContext } from 'react';
-import ButtonPrimary from 'components/layout/button/ButtonPrimary';
+import { useContext, Fragment } from 'react';
+import Image from 'next/image';
 
 export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
   const { windowWidth } = useContext(GriddyContext);
@@ -56,7 +57,33 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 3:
-        return ``;
+        return (
+          <>
+            When developing a website, having designated areas like “header”,
+            “sidebar”, “main content”, and “footer” is very important. To create
+            these areas, the
+            <Styled.CodeSnippet>grid-template-areas</Styled.CodeSnippet>
+            property is useful. Given a 3x3 grid, a right triangular shape can
+            be created by
+            <br />
+            <Styled.CodeSnippetGroup margin="1.5rem auto">
+              grid-template-areas: <br />
+              <div style={{ textIndent: '1.6rem' }}>"top . ."</div>
+              <div style={{ textIndent: '1.6rem' }}>"middle" "middle ."</div>
+              <div style={{ textIndent: '1.6rem' }}>
+                "bottom" "bottom" "bottom";
+              </div>
+            </Styled.CodeSnippetGroup>
+            where a "." represents an empty grid area. Then there will have to
+            be 3 HTML tags with classes that have one of the{' '}
+            <Styled.CodeSnippet margin="0.32rem 0.56rem 0.32rem 0">
+              grid-area: top
+            </Styled.CodeSnippet>
+            ,<Styled.CodeSnippet>grid-area: middle</Styled.CodeSnippet>, and
+            <Styled.CodeSnippet>grid-area: bottom</Styled.CodeSnippet>{' '}
+            properties respectively.
+          </>
+        );
       case 4:
         return ``;
     }
@@ -70,7 +97,8 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
       case 2:
         return `Align each box to the bottom left of its grid container.`;
       case 3:
-        return ``;
+        return `Recreate the grid below using grid areas. The sidebar should be 1/3
+        of the width with the main content taking up the rest of the space.`;
       case 4:
         return ``;
     }
@@ -143,17 +171,75 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 3:
-        return ``;
+        const lessonTemplates = Object.keys(lessonData).slice(1, 4);
+        const lessonAreas = [
+          { name: 'header', background: '#ff5454', property: 'headerArea' },
+          { name: 'sidebar', background: '#61cc9e', property: 'sidebarArea' },
+          {
+            name: 'main-content',
+            background: '#ffffff',
+            property: 'mainContentArea',
+          },
+          { name: 'footer', background: '#54a3ff', property: 'footerArea' },
+        ];
+        const renderTemplateInputs = lessonTemplates.map((key) => (
+          <Styled.Code textIndent="3.2rem" key={key}>
+            "
+            <Styled.CodeInput
+              onChange={(e) => onInputChange(e, key)}
+              value={lessonData[key]}
+            />
+            "
+          </Styled.Code>
+        ));
+
+        const renderAreaInputs = lessonAreas.map(
+          ({ name, background, property }) => (
+            <Fragment key={name}>
+              <Styled.Code>{'.' + name} &#123;</Styled.Code>
+              <Styled.Code textIndent="1.6rem">
+                background: {background};
+              </Styled.Code>
+              <Styled.Code textIndent="1.6rem">
+                grid-area:{' '}
+                <Styled.CodeInput
+                  onChange={(e) => onInputChange(e, property)}
+                  value={lessonData[property]}
+                />
+                ;
+              </Styled.Code>
+              <Styled.Code>&#125;</Styled.Code>
+            </Fragment>
+          )
+        );
+
+        return (
+          <>
+            <Styled.Code>.container &#123;</Styled.Code>
+            <Styled.Code textIndent="1.6rem">display: grid;</Styled.Code>
+            <Styled.Code textIndent="1.6rem">
+              grid-template-columns: 33.333% 66.666%;
+            </Styled.Code>
+            <Styled.Code textIndent="1.6rem">
+              grid-template-rows: 10% 80% 10%;
+            </Styled.Code>
+            <Styled.Code textIndent="1.6rem">grid-template-areas:</Styled.Code>
+            {renderTemplateInputs}
+            <Styled.Code>&#125;</Styled.Code>
+            {renderAreaInputs}
+          </>
+        );
       case 4:
         return ``;
     }
   };
 
   const renderHTML = () => {
+    let innerHTML;
     switch (lessonIndex) {
       case 1:
       case 2:
-        const innerHTML = [...Array(6)].map((val, i) => (
+        innerHTML = [...Array(6)].map((val, i) => (
           <Styled.Code textIndent="1.6rem" key={`leaf-${i}`}>
             &#60;div class="leaf"&#62;&#60;/div&#62;
           </Styled.Code>
@@ -167,7 +253,22 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 3:
-        return ``;
+        const formatInnerHTML = (string) =>
+          string[0].toUpperCase() + string.slice(1).replace('-', ' ');
+
+        innerHTML = ['header', 'sidebar', 'main-content', 'footer'].map(
+          (el) => (
+            <Styled.Code textIndent="1.6rem" key={el}>
+              &#60;div class="{el}"&#62; {formatInnerHTML(el)} &#60;/div&#62;
+            </Styled.Code>
+          )
+        );
+        return (
+          <>
+            <Styled.Code>&#60;div class="container"&#62;</Styled.Code>
+            {innerHTML}
+          </>
+        );
       case 4:
         return ``;
     }
@@ -191,7 +292,17 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
         });
         return;
       case 3:
-        return ``;
+        setLessonData({
+          solution: null,
+          templateArea1: 'h h',
+          templateArea2: 's m',
+          templateArea3: 'f f',
+          headerArea: 'h',
+          sidebarArea: 's',
+          mainContentArea: 'm',
+          footerArea: 'f',
+        });
+        return;
       case 4:
         return ``;
     }
@@ -200,7 +311,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
   return (
     <>
       {renderHeader()}
-      <Styled.GridContainer>
+      <Styled.GridContainer lessonIndex={lessonIndex}>
         <Styled.GridItem gridArea={'sandbox'}>
           <Styled.SubHeader textAlign="center">Sand box</Styled.SubHeader>
           <Sandbox lessonIndex={lessonIndex} lessonData={lessonData} />
@@ -217,12 +328,23 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
             {renderInfoDesc()}
           </Styled.Description>
 
-          <Styled.SubHeader margin={'4rem 0 1.2rem'} responsive>
+          <Styled.SubHeader margin="4rem 0 1.2rem" responsive>
             Task:
           </Styled.SubHeader>
           <Styled.Description fontSize="1.76rem" margin="0" responsive>
             {renderTaskDesc()}
           </Styled.Description>
+          {lessonIndex === 3 && (
+            <Styled.GridImage>
+              <Image
+                src="/images/lesson3-grid.png"
+                alt="image of lesson3 task goal"
+                width={916}
+                height={496}
+                layout="responsive"
+              />
+            </Styled.GridImage>
+          )}
         </Styled.GridItem>
 
         <Styled.GridItem gridArea={'css'}>

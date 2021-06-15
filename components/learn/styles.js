@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
-import { header, description, flexColumn, flexCenter } from 'styles/Mixins';
+import { header, description, flexCenter } from 'styles/Mixins';
 import {
   CodeContainer as codeContainer,
   Code as code,
@@ -42,6 +42,16 @@ export const GridContainer = styled.div`
     'sandbox info'
     'css html';
 
+  ${({ lessonIndex }) =>
+    lessonIndex === 3 &&
+    css`
+      grid-template-areas:
+        'sandbox info'
+        'css info'
+        'css html'
+        'css html';
+    `}
+
   @media only screen and (max-width: 48em) {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto auto;
@@ -62,6 +72,10 @@ export const GridItem = styled.div`
   }
 `;
 
+export const GridImage = styled.div`
+  margin-top: 2rem;
+`;
+
 export const Sandbox = styled.div`
   height: ${({ height }) => height || '40rem'};
   width: 100%;
@@ -76,13 +90,54 @@ export const SandboxGrid = styled.div`
   height: 100%;
   overflow: auto;
 
-  ${({ lessonIndex }) =>
-    lessonIndex === 2 &&
-    css`
-      display: grid;
-      grid-template-columns: 50% 50%;
-      grid-template-rows: 133px 133px 133px;
-    `}
+  ${({ lessonIndex }) => {
+    switch (lessonIndex) {
+      case 2:
+        return css`
+          display: grid;
+          grid-template-columns: 50% 50%;
+          grid-template-rows: 133px 133px 133px;
+        `;
+      case 3:
+        return css`
+          display: grid;
+          grid-template-columns: 33.333% 66.666%;
+          grid-template-rows: 10% 80% 10%;
+          height: 100%;
+          text-align: center;
+          font-size: 1.92rem;
+          font-family: ${({ theme }) => theme.fonts.primary};
+          grid-template-areas:
+            '${({ templateArea1 }) => templateArea1}'
+            '${({ templateArea2 }) => templateArea2}'
+            '${({ templateArea3 }) => templateArea3}';
+        `;
+    }
+  }}
+`;
+
+export const SandboxHeader = styled(motion.header)`
+  background: #ff5454;
+  grid-area: ${({ headerArea }) => headerArea};
+  ${flexCenter}
+`;
+
+export const SandboxSidebar = styled(motion.section)`
+  background: #61cc9e;
+  grid-area: ${({ sidebarArea }) => sidebarArea};
+  ${flexCenter}
+`;
+
+export const SandboxMainContent = styled(motion.section)`
+  background: #f1f1f1;
+  grid-area: ${({ mainContentArea }) => mainContentArea};
+  ${flexCenter}
+`;
+
+export const SandboxFooter = styled(motion.footer)`
+  background: #54a3ff;
+  grid-area: ${({ footerArea }) => footerArea};
+  ${flexCenter}
 `;
 
 export const FourLeafClover = styled(motion.div)`
@@ -106,6 +161,13 @@ export const CodeSnippet = styled.span`
   padding: 0.32rem 0.48rem;
   border-radius: 0.8rem;
   white-space: nowrap;
+`;
+
+export const CodeSnippetGroup = styled(CodeSnippet)`
+  padding: 0.5rem;
+  width: max-content;
+  display: block;
+  text-align: left;
 `;
 
 export const CodeContainer = styled(codeContainer)``;
