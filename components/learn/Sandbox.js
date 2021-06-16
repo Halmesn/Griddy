@@ -50,7 +50,7 @@ export default function Sandbox({ lessonIndex, lessonData }) {
   };
 
   return (
-    <Styled.Sandbox height={lessonIndex === 3 && '50rem'}>
+    <Styled.Sandbox height={lessonIndex === 3 ? '50rem' : ''}>
       <Styled.SandboxGrid {...lessonData} layout lessonIndex={lessonIndex}>
         {renderGridItems()}
       </Styled.SandboxGrid>

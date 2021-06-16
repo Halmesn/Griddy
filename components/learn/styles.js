@@ -188,6 +188,11 @@ export const CodeSnippetGroup = styled(CodeSnippet)`
   width: max-content;
   display: block;
   text-align: left;
+
+  span {
+    display: block;
+    text-indent: 1.6rem;
+  }
 `;
 
 export const CodeContainer = styled(codeContainer)``;

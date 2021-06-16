@@ -68,11 +68,9 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
             <br />
             <Styled.CodeSnippetGroup margin="1.5rem auto">
               grid-template-areas: <br />
-              <div style={{ textIndent: '1.6rem' }}>"top . ."</div>
-              <div style={{ textIndent: '1.6rem' }}>"middle" "middle ."</div>
-              <div style={{ textIndent: '1.6rem' }}>
-                "bottom" "bottom" "bottom";
-              </div>
+              <span>"top . ."</span>
+              <span>"middle" "middle ."</span>
+              <span>"bottom" "bottom" "bottom";</span>
             </Styled.CodeSnippetGroup>
             where a "." represents an empty grid area. Then there will have to
             be 3 HTML tags with classes that have one of the{' '}
