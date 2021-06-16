@@ -4,12 +4,14 @@ import Sandbox from './Sandbox';
 import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 
 import { GriddyContext } from 'components/layout/Layout';
+import { LESSON } from 'content/lessonContent';
 
 import { useContext, Fragment } from 'react';
 import Image from 'next/image';
 
 export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
   const { windowWidth } = useContext(GriddyContext);
+  const { solutions } = LESSON;
 
   const renderHeader = () => {
     const renderHeaderText = () => {
@@ -30,7 +32,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
     );
   };
 
-  const renderInfoDesc = () => {
+  const renderInfo = () => {
     switch (lessonIndex) {
       case 1:
         return (
@@ -121,7 +123,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
     }
   };
 
-  const renderTaskDesc = () => {
+  const renderTask = () => {
     switch (lessonIndex) {
       case 1:
         return `Create a 2x3 grid where each row has a height of 133 pixels and each
@@ -145,48 +147,46 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
     }
   };
 
-  const renderCSSCode = () => {
+  const renderCSS = () => {
     const onInputChange = (e, property) => {
       const lessonDataCopy = { ...lessonData };
       lessonDataCopy[property] = e.target.value;
       setLessonData(lessonDataCopy);
     };
 
-    const lessonDataKeys = Object.keys(lessonData).slice(1, 4);
+    let cssProperties;
+
+    // this will get something like: ['display: '',templateCols: '',templateRows: '']
+    const lessonDataKeys = Object.keys(lessonData).slice(0, 3);
+
+    const renderCSSInputs = (cssProperties) =>
+      lessonDataKeys.map((key, i) => (
+        <Styled.Code textIndent="1.6rem" key={key}>
+          {cssProperties[i]}
+          <Styled.CodeInput
+            onChange={(e) => onInputChange(e, key)}
+            value={lessonData[key]}
+          />
+          ;
+        </Styled.Code>
+      ));
 
     switch (lessonIndex) {
       case 1:
+        cssProperties = [
+          'display:',
+          'grid-template-columns:',
+          'grid-template-rows:',
+        ];
         return (
           <>
             <Styled.Code>.container &#123;</Styled.Code>
-            <Styled.Code textIndent="1.6rem">
-              display:{' '}
-              <Styled.CodeInput
-                onChange={(e) => onInputChange(e, 'display')}
-                value={lessonData['display']}
-              />
-              ;
-            </Styled.Code>
-            <Styled.Code textIndent="1.6rem">
-              grid-template-columns:{' '}
-              <Styled.CodeInput
-                onChange={(e) => onInputChange(e, 'templateCols')}
-                value={lessonData['templateCols']}
-              />
-              ;
-            </Styled.Code>
-            <Styled.Code textIndent="1.6rem">
-              grid-template-rows:{' '}
-              <Styled.CodeInput
-                onChange={(e) => onInputChange(e, 'templateRows')}
-                value={lessonData['templateRows']}
-              />
-              ;
-            </Styled.Code>
+            {renderCSSInputs(cssProperties)}
             <Styled.Code>&#125;</Styled.Code>
           </>
         );
       case 2:
+        cssProperties = ['justify-self:', 'align-self:'];
         return (
           <>
             <Styled.Code>.leaf &#123;</Styled.Code>
@@ -194,22 +194,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
             <Styled.Code>width: 40px;</Styled.Code>
             <Styled.Code>margin: 10px;</Styled.Code>
             <Styled.Code>place-self: center;</Styled.Code>
-            <Styled.Code>
-              justify-self:{' '}
-              <Styled.CodeInput
-                onChange={(e) => onInputChange(e, 'justifySelf')}
-                value={lessonData['justifySelf']}
-              />
-              ;
-            </Styled.Code>
-            <Styled.Code>
-              align-self:{' '}
-              <Styled.CodeInput
-                onChange={(e) => onInputChange(e, 'alignSelf')}
-                value={lessonData['alignSelf']}
-              />
-              ;
-            </Styled.Code>
+            {renderCSSInputs(cssProperties)}
             <Styled.Code>&#125;</Styled.Code>
           </>
         );
@@ -224,6 +209,7 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           },
           { name: 'footer', background: '#54a3ff', property: 'footerArea' },
         ];
+
         const renderTemplateInputs = lessonDataKeys.map((key) => (
           <Styled.Code textIndent="3.2rem" key={key}>
             "
@@ -272,26 +258,16 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
           </>
         );
       case 4:
-        const cssPropertyArray = [
+        cssProperties = [
           'grid-gap:',
           'grid-template-columns:',
           'grid-template-rows:',
         ];
-        const cssInputs = lessonDataKeys.map((key, i) => (
-          <Styled.Code textIndent="1.6rem" key={key}>
-            {cssPropertyArray[i]}
-            <Styled.CodeInput
-              onChange={(e) => onInputChange(e, key)}
-              value={lessonData[key]}
-            />
-            ;
-          </Styled.Code>
-        ));
         return (
           <>
             <Styled.Code>.container &#123;</Styled.Code>
             <Styled.Code textIndent="1.6rem">display: grid;</Styled.Code>
-            {cssInputs}
+            {renderCSSInputs(cssProperties)}
             <Styled.Code textIndent="1.6rem">background: #fbd590;</Styled.Code>
             <Styled.Code>&#125;</Styled.Code>
           </>
@@ -338,45 +314,9 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
     }
   };
 
-  const onSolutionBtnClick = () => {
-    switch (lessonIndex) {
-      case 1:
-        setLessonData({
-          solution: null,
-          display: 'grid',
-          templateCols: '50% 50%',
-          templateRows: '133px 133px 133px',
-        });
-        return;
-      case 2:
-        setLessonData({
-          solution: null,
-          justifySelf: 'start',
-          alignSelf: 'end',
-        });
-        return;
-      case 3:
-        setLessonData({
-          solution: null,
-          templateArea1: 'h h',
-          templateArea2: 's m',
-          templateArea3: 'f f',
-          headerArea: 'h',
-          sidebarArea: 's',
-          mainContentArea: 'm',
-          footerArea: 'f',
-        });
-        return;
-      case 4:
-        setLessonData({
-          solution: null,
-          gap: '8px 10px',
-          templateCols: '1fr 2fr',
-          templateRows: '1fr 8fr 1fr',
-        });
-        return;
-    }
-  };
+  const onSolutionBtnClick = () => setLessonData(solutions[lessonIndex - 1]);
+
+  const onSubmitBtnClick = () => {};
 
   return (
     <>
@@ -395,14 +335,14 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
             Info:
           </Styled.SubHeader>
           <Styled.Description fontSize="1.76rem" margin="0" responsive>
-            {renderInfoDesc()}
+            {renderInfo()}
           </Styled.Description>
 
           <Styled.SubHeader margin="4rem 0 1.2rem" responsive>
             Task:
           </Styled.SubHeader>
           <Styled.Description fontSize="1.76rem" margin="0" responsive>
-            {renderTaskDesc()}
+            {renderTask()}
           </Styled.Description>
           {lessonIndex === 3 && (
             <Styled.GridImage>
@@ -419,15 +359,17 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
 
         <Styled.GridItem gridArea={'css'}>
           <Styled.SubHeader textAlign="center">CSS</Styled.SubHeader>
-          <Styled.CodeContainer>{renderCSSCode()}</Styled.CodeContainer>
+          <Styled.CodeContainer>{renderCSS()}</Styled.CodeContainer>
           <Styled.FlexContainer
             padding="2rem 0 0 0"
             justifyContent="space-between"
           >
-            <ButtonPrimary onClick={onSolutionBtnClick} margin="0">
+            <ButtonPrimary onClick={onSolutionBtnClick} margin="0" solution>
               Show Solution
             </ButtonPrimary>
-            <ButtonPrimary margin="0">Finish Lesson</ButtonPrimary>
+            <ButtonPrimary margin="0" onClick={onSubmitBtnClick}>
+              Submit Answer
+            </ButtonPrimary>
           </Styled.FlexContainer>
         </Styled.GridItem>
 

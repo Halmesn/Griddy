@@ -32,7 +32,7 @@ export const Code = styled.code`
   font-family: ${({ theme }) => theme.fonts.code};
 `;
 
-export const CodeInput = styled.input`
+export const CodeInput = styled(motion.input)`
   border: 0;
   padding: 0 0.6rem;
   outline: none;

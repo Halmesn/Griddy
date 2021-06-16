@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { motion } from 'framer-motion';
 
 export const Button = styled(motion.button)`
@@ -12,4 +12,11 @@ export const Button = styled(motion.button)`
   background: ${({ theme }) => theme.colors.buttonPrimary};
   color: ${({ theme }) => theme.colors.primary};
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
+
+  ${({ solution }) =>
+    solution &&
+    css`
+      background: #dc3545;
+      color: white;
+    `}
 `;

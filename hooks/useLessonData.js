@@ -3,12 +3,12 @@ import { useState } from 'react';
 import { LESSON } from 'content/lessonContent';
 
 export default function useLessonData() {
-  const { initialState } = LESSON;
+  const { initialStates } = LESSON;
 
-  const [lessonOneData, setLessonOneData] = useState(initialState[0]);
-  const [lessonTwoData, setLessonTwoData] = useState(initialState[1]);
-  const [lessonThreeData, setLessonThreeData] = useState(initialState[2]);
-  const [lessonFourData, setLessonFourData] = useState(initialState[3]);
+  const [lessonOneData, setLessonOneData] = useState(initialStates[0]);
+  const [lessonTwoData, setLessonTwoData] = useState(initialStates[1]);
+  const [lessonThreeData, setLessonThreeData] = useState(initialStates[2]);
+  const [lessonFourData, setLessonFourData] = useState(initialStates[3]);
 
   const lessonData = [
     lessonOneData,

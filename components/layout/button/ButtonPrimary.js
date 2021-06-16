@@ -7,7 +7,7 @@ export default function ButtonPrimary({
   onClick,
   margin,
   children,
-  useCase,
+  solution,
 }) {
   const router = useRouter();
 
@@ -22,7 +22,7 @@ export default function ButtonPrimary({
       margin={margin}
       whileHover={{ scale: 1.075 }}
       whileTap={{ scale: 1 }}
-      useCase={useCase}
+      solution={solution}
     >
       {children}
     </Styled.Button>
