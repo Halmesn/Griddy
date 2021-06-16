@@ -84,14 +84,17 @@ export const Sandbox = styled.div`
 `;
 
 export const SandboxGrid = styled.div`
-  display: ${({ display }) => display};
-  grid-template-columns: ${({ templateCols }) => templateCols};
-  grid-template-rows: ${({ templateRows }) => templateRows};
   height: 100%;
   overflow: auto;
 
   ${({ lessonIndex }) => {
     switch (lessonIndex) {
+      case 1:
+        return css`
+          display: ${({ display }) => display};
+          grid-template-columns: ${({ templateCols }) => templateCols};
+          grid-template-rows: ${({ templateRows }) => templateRows};
+        `;
       case 2:
         return css`
           display: grid;
