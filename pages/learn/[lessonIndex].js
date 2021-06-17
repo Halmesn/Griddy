@@ -1,5 +1,5 @@
 import * as Styled from 'components/learn/styles';
-import { ContentVariants } from 'components/about/styles';
+import { ContentVariants, LessonPageVariants } from 'components/about/styles';
 
 import Lesson from 'components/learn/Lesson';
 import LessonSidebar from 'components/learn/lessonSidebar';

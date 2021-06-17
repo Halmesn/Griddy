@@ -5,6 +5,7 @@ import {
   CodeContainer as codeContainer,
   Code as code,
   CodeInput as codeInput,
+  QuizContainer as quizContainer,
 } from 'components/quiz/styles';
 
 export const LessonContainer = styled(motion.section)`
@@ -204,10 +205,12 @@ export const Code = styled(code)``;
 
 export const CodeInput = styled(codeInput)``;
 
+export const Finish = styled(quizContainer)``;
+
 export const CodeContainerVariants = {
   initial: { x: 0 },
   shake: {
-    x: [0, 10, -10, 10, -10, 10, -10, 10, -10, 0],
+    x: [0, 30, -30, 30, -30, 30, -30, 30, -30, 0],
   },
   transition: {
     x: { duration: 1, ease: 'easeInOut' },

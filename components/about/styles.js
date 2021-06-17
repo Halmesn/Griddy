@@ -30,7 +30,7 @@ export const Description = styled(motion.p)`
 export const LinkList = styled.ul`
   list-style-type: none;
   padding: 0 0.8rem;
-  margin: 1.6rem 0;
+  margin: ${({ margin }) => margin || '1.6rem 0'};
   display: flex;
   flex-direction: column;
   align-items: flex-start;

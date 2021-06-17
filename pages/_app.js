@@ -1,6 +1,7 @@
 import Layout from 'components/layout/Layout';
 
 import Head from 'next/head';
+import { AnimatePresence } from 'framer-motion';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -24,7 +25,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
 
       <Layout>
-        <Component {...pageProps} />
+        <AnimatePresence exitBeforeEnter>
+          <Component {...pageProps} />
+        </AnimatePresence>
       </Layout>
     </>
   );
