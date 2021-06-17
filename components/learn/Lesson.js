@@ -6,12 +6,30 @@ import ButtonPrimary from 'components/layout/button/ButtonPrimary';
 import { GriddyContext } from 'components/layout/Layout';
 import { LESSON } from 'content/lessonContent';
 
-import { useContext, Fragment } from 'react';
+import { useContext, Fragment, useEffect, useState } from 'react';
+import { useAnimation } from 'framer-motion';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
   const { windowWidth } = useContext(GriddyContext);
+
   const { solutions } = LESSON;
+  const correctSolution = Object.values(solutions[lessonIndex - 1]);
+
+  const router = useRouter();
+  const controls = useAnimation();
+
+  const [isLessonSolved, setIsLessonSolved] = useState(false);
+
+  useEffect(() => {
+    const userSolution = Object.values(lessonData);
+    setIsLessonSolved(true);
+
+    for (let i = 0; i < correctSolution.length; i++) {
+      if (correctSolution[i] !== userSolution[i]) setIsLessonSolved(false);
+    }
+  }, [lessonData]);
 
   const renderHeader = () => {
     const renderHeaderText = () => {
@@ -316,7 +334,14 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
 
   const onSolutionBtnClick = () => setLessonData(solutions[lessonIndex - 1]);
 
-  const onSubmitBtnClick = () => {};
+  const onSubmitBtnClick = () => {
+    if (!isLessonSolved) {
+      controls.start('shake');
+      return;
+    } else {
+      router.push(`/learn/${lessonIndex < 4 ? lessonIndex + 1 : 'finish'}`);
+    }
+  };
 
   return (
     <>
@@ -359,7 +384,13 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
 
         <Styled.GridItem gridArea={'css'}>
           <Styled.SubHeader textAlign="center">CSS</Styled.SubHeader>
-          <Styled.CodeContainer>{renderCSS()}</Styled.CodeContainer>
+          <Styled.CodeContainer
+            variants={Styled.CodeContainerVariants}
+            initial="initial"
+            animate={controls}
+          >
+            {renderCSS()}
+          </Styled.CodeContainer>
           <Styled.FlexContainer
             padding="2rem 0 0 0"
             justifyContent="space-between"
@@ -367,8 +398,12 @@ export default function Lesson({ lessonIndex, lessonData, setLessonData }) {
             <ButtonPrimary onClick={onSolutionBtnClick} margin="0" solution>
               Show Solution
             </ButtonPrimary>
-            <ButtonPrimary margin="0" onClick={onSubmitBtnClick}>
-              Submit Answer
+            <ButtonPrimary
+              margin="0"
+              onClick={onSubmitBtnClick}
+              className={`${!isLessonSolved && 'disabled'}`}
+            >
+              Finish this lesson
             </ButtonPrimary>
           </Styled.FlexContainer>
         </Styled.GridItem>

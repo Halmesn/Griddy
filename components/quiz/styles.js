@@ -14,7 +14,7 @@ export const SubHeader = styled.h2`
   ${header('h2')}
 `;
 
-export const CodeContainer = styled.div`
+export const CodeContainer = styled(motion.div)`
   background: ${({ theme }) => theme.colors.lowContrastBackground};
   padding: 1.6rem;
   border-radius: 0.8rem;

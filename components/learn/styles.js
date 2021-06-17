@@ -203,3 +203,13 @@ export const CodeContainer = styled(codeContainer)``;
 export const Code = styled(code)``;
 
 export const CodeInput = styled(codeInput)``;
+
+export const CodeContainerVariants = {
+  initial: { x: 0 },
+  shake: {
+    x: [0, 10, -10, 10, -10, 10, -10, 10, -10, 0],
+  },
+  transition: {
+    x: { duration: 1, ease: 'easeInOut' },
+  },
+};

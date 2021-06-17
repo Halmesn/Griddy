@@ -13,6 +13,10 @@ export const Button = styled(motion.button)`
   color: ${({ theme }) => theme.colors.primary};
   transition: background-color 0.15s ease-in-out, color 0.15s ease-in-out;
 
+  &.disabled {
+    opacity: 0.5;
+  }
+
   ${({ solution }) =>
     solution &&
     css`

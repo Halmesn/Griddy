@@ -8,6 +8,7 @@ export default function ButtonPrimary({
   margin,
   children,
   solution,
+  className,
 }) {
   const router = useRouter();
 
@@ -23,6 +24,7 @@ export default function ButtonPrimary({
       whileHover={{ scale: 1.075 }}
       whileTap={{ scale: 1 }}
       solution={solution}
+      className={className}
     >
       {children}
     </Styled.Button>
