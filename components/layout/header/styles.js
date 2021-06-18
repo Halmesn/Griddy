@@ -165,11 +165,10 @@ export const HamMenuVariants = {
     opacity: 1,
     x: 0,
   },
-};
-
-export const HamMenuTransitions = {
-  type: 'spring',
-  stiffness: 40,
+  transition: {
+    type: 'spring',
+    stiffness: 40,
+  },
 };
 
 export const MoonIcon = ({ height, width, fill }) => (

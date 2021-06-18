@@ -27,7 +27,7 @@ export default function Sidebar({
     if (quiz) {
       if (windowWidth < 540) {
         visible.width = 180;
-        visible.height = 350;
+        visible.height = 370;
       } else {
         visible.width = 230;
         visible.height = 430;
@@ -37,7 +37,7 @@ export default function Sidebar({
         visible.width = 180;
         visible.height = 280;
       } else {
-        visible.width = 260;
+        visible.width = 280;
         visible.height = 370;
       }
     }

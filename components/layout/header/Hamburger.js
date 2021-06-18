@@ -10,16 +10,9 @@ import { AnimatePresence, useAnimation } from 'framer-motion';
 export default function Hamburger({ renderLinks }) {
   const { windowWidth } = useContext(GriddyContext);
 
-  const controls = useAnimation();
-
   const hamMenuRef = useRef();
 
   const [showHamMenu, setShowHamMenu] = useState(false);
-
-  useEffect(
-    () => controls.start(`${showHamMenu ? 'visible' : 'hidden'}`),
-    [showHamMenu]
-  );
 
   useEffect(() => windowWidth > 768 && setShowHamMenu(false), [windowWidth]);
 
@@ -33,6 +26,8 @@ export default function Hamburger({ renderLinks }) {
     return () => document.removeEventListener('click', onOutsideClick);
   }, [showHamMenu]);
 
+  console.log(showHamMenu);
+
   return (
     <>
       <Styled.Hamburger onClick={() => setShowHamMenu(!showHamMenu)}>
@@ -42,11 +37,10 @@ export default function Hamburger({ renderLinks }) {
       <AnimatePresence>
         {showHamMenu && (
           <Styled.HamMenu
-            animate={controls}
+            animate={showHamMenu ? 'visible' : 'hidden'}
             initial="hidden"
             exit="hidden"
             variants={Styled.HamMenuVariants}
-            transition={Styled.HamMenuTransitions}
             ref={hamMenuRef}
           >
             <Styled.HamList margin="2.4rem 0 1.6rem">
