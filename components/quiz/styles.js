@@ -117,6 +117,14 @@ export const Message = styled(motion.div)`
     position: absolute;
     top: 2.5rem;
     right: 1rem;
+
+    @media only screen and (max-width: 33.75em) {
+      display: none;
+    }
+  }
+
+  @media only screen and (max-width: 33.75em) {
+    padding: 1rem 1.5rem;
   }
 
   @media screen and (max-width: 48em) {
