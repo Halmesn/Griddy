@@ -12,6 +12,10 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     font-size: 62.5%;
     box-sizing: border-box;
+
+    @media only screen and (max-width: 33.75em) {
+      font-size: 50%;
+  }
   }
 
   body {

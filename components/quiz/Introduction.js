@@ -9,7 +9,7 @@ export default function Introduction() {
       initial="hidden"
       animate="visible"
     >
-      <Styled.Header>The CSS Grid Quiz</Styled.Header>
+      <Styled.Header textAlign="center">The CSS Grid Quiz</Styled.Header>
       <Styled.Description fontSize="2rem" textAlign="center">
         Take a series of questions to test your practical knowledge of CSS grid.
       </Styled.Description>

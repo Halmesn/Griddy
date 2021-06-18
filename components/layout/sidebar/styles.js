@@ -93,13 +93,3 @@ export const Links = styled(NextLink)`
     background: ${({ theme }) => theme.colors.selected};
   }
 `;
-
-export const QuizSidebarVariants = {
-  hidden: { width: 52, height: 52 },
-  visible: { width: 230, height: 430 },
-};
-
-export const LessonSidebarVariants = {
-  hidden: { width: 52, height: 52 },
-  visible: { width: 260, height: 370 },
-};

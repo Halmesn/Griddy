@@ -1,6 +1,8 @@
 import * as Styled from './styles';
 
-import { useEffect } from 'react';
+import { GriddyContext } from 'components/layout/Layout';
+
+import { useEffect, useContext } from 'react';
 import { AnimatePresence, useAnimation } from 'framer-motion';
 import { useRouter } from 'next/router';
 
@@ -9,15 +11,45 @@ export default function Sidebar({
   showSidebar,
   setShowSidebar,
   children,
-  quiz,
+  quiz = false,
 }) {
   const controls = useAnimation();
   const router = useRouter();
+  const { windowWidth } = useContext(GriddyContext);
 
   useEffect(
     () => controls.start(`${showSidebar ? 'visible' : 'hidden'}`),
     [showSidebar]
   );
+
+  const sidebarVariants = (windowWidth, quiz) => {
+    const visible = {};
+    if (quiz) {
+      if (windowWidth < 540) {
+        visible.width = 180;
+        visible.height = 350;
+      } else {
+        visible.width = 230;
+        visible.height = 430;
+      }
+    } else {
+      if (windowWidth < 540) {
+        visible.width = 180;
+        visible.height = 280;
+      } else {
+        visible.width = 260;
+        visible.height = 370;
+      }
+    }
+
+    return {
+      hidden: {
+        width: windowWidth < 540 ? 43 : 52,
+        height: windowWidth < 540 ? 45 : 52,
+      },
+      visible,
+    };
+  };
 
   const renderLinks = () =>
     links.map(({ text, href }) => (
@@ -35,9 +67,7 @@ export default function Sidebar({
     <Styled.Sidebar
       animate={controls}
       initial="hidden"
-      variants={
-        quiz ? Styled.QuizSidebarVariants : Styled.LessonSidebarVariants
-      }
+      variants={sidebarVariants(windowWidth, quiz)}
     >
       <Styled.MenuContainer
         showSidebar={showSidebar}
