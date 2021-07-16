@@ -1,4 +1,4 @@
-<h1 align="center">🍀 <a href="griddy.vercel.app">Griddy</a></h1>
+<h1 align="center">🍀Griddy</h1>
 <h3 align="center">Anyone can learn CSS Grid.</h3>
 
 <div align="center">
